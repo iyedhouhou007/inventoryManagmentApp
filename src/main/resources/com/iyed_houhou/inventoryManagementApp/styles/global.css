@@ -1,0 +1,62 @@
+/* Global Styles */
+.root {
+  -fx-font-family: "Segoe UI", sans-serif;
+  -fx-background-color: #f4f4f4;
+}
+
+/* Header styles */
+.header {
+  -fx-background-color: #0078d7;
+  -fx-padding: 15px;
+}
+
+.header-label {
+  -fx-font-size: 26px;
+  -fx-text-fill: white;
+  -fx-font-weight: bold;
+}
+
+/* Button Styles */
+.button {
+  -fx-background-color: #0078d7;
+  -fx-text-fill: white;
+  -fx-padding: 10 20;
+  -fx-border-radius: 5;
+}
+
+.button:hover {
+  -fx-background-color: #005cbf;
+}
+
+/* Label Styles */
+.label {
+  -fx-font-size: 16px;
+  -fx-text-fill: #2c3e50;
+}
+
+/* Footer Styles */
+.footer {
+  -fx-background-color: #f4f4f4;
+  -fx-padding: 10px;
+}
+
+.footer-label {
+  -fx-font-size: 14px;
+  -fx-text-fill: #333;
+}
+
+/* Active Page Styles */
+#active-page {
+  -fx-background-color: #0078d7; /* Primary color */
+  -fx-text-fill: white; /* White text for contrast */
+  -fx-font-weight: bold; /* Emphasize the active page */
+  -fx-border-color: #005cbf; /* Slightly darker border */
+  -fx-border-width: 2px; /* Thicker border */
+  -fx-border-radius: 5px; /* Rounded corners */
+  -fx-background-radius: 5px; /* Match border radius */
+}
+
+#active-page:hover {
+  -fx-background-color: #005cbf; /* Darker shade for hover */
+  -fx-text-fill: white; /* Keep text readable */
+}

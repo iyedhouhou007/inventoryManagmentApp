@@ -1,0 +1,70 @@
+/* General alert styles */
+.alert {
+    -fx-font-family: Arial, sans-serif;
+    -fx-background-color: #ffffff;  /* White background for the alert */
+    -fx-border-color: #c4c4c4;      /* Border color matching sidebar */
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-padding: 15px;
+}
+
+/* Alert header */
+.alert-header {
+    -fx-background-color: #0078d7; /* Blue background for header */
+    -fx-padding: 10px 15px;
+    -fx-border-radius: 5px;
+}
+
+/* Alert header label */
+.alert-header .label {
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Alert content */
+.alert-content {
+    -fx-font-size: 16px;
+    -fx-text-fill: #333;
+    -fx-padding: 15px 0;
+}
+
+/* Buttons for the alert */
+.button {
+    -fx-font-size: 16px;
+    -fx-padding: 10px 20px;
+    -fx-background-color: #0078d7;
+    -fx-text-fill: white;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-color: transparent;
+}
+
+.button:hover {
+    -fx-background-color: #005cbf;  /* Darker blue for hover */
+}
+
+.button:focused {
+    -fx-background-color: #004a9a;  /* Darker blue for focused */
+}
+
+/* Specific styles for OK button in the alert */
+.alert .ok-button {
+    -fx-background-color: #0078d7;
+    -fx-text-fill: white;
+}
+
+.alert .ok-button:hover {
+    -fx-background-color: #005cbf;
+}
+
+/* Alert icon */
+.alert-graphic {
+    -fx-padding: 10px;
+}
+
+/* Alert footer */
+.alert-footer {
+    -fx-background-color: #f4f4f4;
+    -fx-padding: 10px;
+}

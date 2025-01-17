@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iyed_houhou.inventoryManagementApp.controllers.ReportsPageViewController">
+
+    <!-- Header -->
+    <top>
+        <HBox alignment="CENTER" spacing="10" styleClass="header">
+            <Label fx:id="appLabel" styleClass="header-label" text="Dashboard - Inventory Management App" />
+        </HBox>
+    </top>
+
+    <!-- Left Sidebar -->
+    <left>
+        <VBox alignment="TOP_CENTER" spacing="10" styleClass="sidebar">
+            <Label styleClass="sidebar-label" text="Menu" />
+            <Button styleClass="sidebar-button" text="Dashboard" onAction="#openDashboardPage"/>
+            <Button styleClass="sidebar-button" text="Add Sale" onAction="#openAddSalePage"/>
+            <Button styleClass="sidebar-button" text="Products" onAction="#openProductsPage"/>
+            <Button id="active-page" styleClass="sidebar-button" text="Reports" onAction="#openReportsPage"/>
+            <Button styleClass="sidebar-button" text="Suppliers" onAction="#openSuppliersPage"/>
+            <Button styleClass="sidebar-button" text="Settings" onAction="#openSettingsPage"/>
+            <Button text="Logout" onAction="#logout">
+                <styleClass>
+                    <String fx:value="sidebar-button" />
+                    <String fx:value="logout-button" />
+                </styleClass>
+            </Button>
+        </VBox>
+    </left>
+
+
+    <!-- Main Content Area -->
+    <center>
+        <VBox alignment="CENTER" spacing="20" styleClass="main-content">
+            <Label styleClass="main-label" text="Welcome, User!" />
+            <Label styleClass="main-sub-label" text="Here are your latest updates:" />
+            <Button styleClass="main-button" text="View Product List" />
+            <Button styleClass="main-button" text="Generate Report" />
+            <Button styleClass="main-button" text="Manage Orders" />
+        </VBox>
+    </center>
+
+    <!-- Footer -->
+    <bottom>
+        <HBox alignment="CENTER" spacing="10" styleClass="footer">
+            <Label styleClass="footer-label" text="© 2025 Inventory Management App | All Rights Reserved" />
+        </HBox>
+    </bottom>
+
+    <stylesheets>
+        <URL value="@../styles/global.css" />
+        <URL value="@../styles/reportsPageStyles.css" />
+        <URL value="@../styles/navBarStyles.css" />
+    </stylesheets>
+</BorderPane>
