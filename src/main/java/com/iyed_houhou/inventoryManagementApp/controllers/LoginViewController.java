@@ -1,21 +1,14 @@
 package com.iyed_houhou.inventoryManagementApp.controllers;
 
-import com.iyed_houhou.inventoryManagementApp.Main;
-import com.iyed_houhou.inventoryManagementApp.config.AppConfig;
 import com.iyed_houhou.inventoryManagementApp.models.Role;
 import com.iyed_houhou.inventoryManagementApp.models.User;
 import com.iyed_houhou.inventoryManagementApp.services.UserService;
 import com.iyed_houhou.inventoryManagementApp.utils.SessionManager;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 import java.util.Optional;
 
@@ -83,19 +76,6 @@ public class LoginViewController extends BasePageController{
             loadPage("RegisterView.fxml");
     }
 
-    private Stage getStage(Pane registerPane) {
-        Stage stage = (Stage) usernameField.getScene().getWindow();  // Get the current stage
-        Scene registerScene = new Scene(registerPane);  // Create a new scene with the register pane
-        stage.setScene(registerScene);  // Set the new scene
-
-        stage.setFullScreen(true);
-        registerScene.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.F11) {
-                stage.setFullScreen(!stage.isFullScreen());
-            }
-        });
-        return stage;
-    }
 
     @FXML
     private void forgotPassword() {

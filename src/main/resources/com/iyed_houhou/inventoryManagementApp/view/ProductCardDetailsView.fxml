@@ -50,9 +50,6 @@
             <TextField fx:id="productImageField" styleClass="input-field" GridPane.columnIndex="1"
                        GridPane.rowIndex="6"/>
 
-            <!-- Save Button -->
-            <Button fx:id="saveButton" onAction="#saveProductDetails" styleClass="save-button" text="Save"
-                    GridPane.columnIndex="1" GridPane.rowIndex="7"/>
             <columnConstraints>
                 <ColumnConstraints/>
                 <ColumnConstraints/>

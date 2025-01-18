@@ -5,89 +5,25 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<!--<?import com.iyed_houhou.inventoryManagementApp.customFxmlNodes.ProductCard?>-->
-
-<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iyed_houhou.inventoryManagementApp.controllers.ProductsPageViewController">
+<BorderPane maxHeight="1080.0" maxWidth="1920.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iyed_houhou.inventoryManagementApp.controllers.ProductsPageViewController">
 
     <!-- Header -->
     <top>
         <HBox alignment="CENTER" spacing="10" styleClass="header">
-            <Label fx:id="appLabel" styleClass="header-label" text="Dashboard - Inventory Management App" />
+            <Label styleClass="header-label" text="Dashboard - Inventory Management App" />
         </HBox>
     </top>
-
-    <!-- Left Sidebar -->
-    <left>
-        <VBox alignment="TOP_CENTER" prefHeight="512.0" prefWidth="184.0" spacing="10" styleClass="sidebar">
-            <Label styleClass="sidebar-label" text="Menu" />
-            <Button onAction="#openDashboardPage" styleClass="sidebar-button" text="Dashboard" />
-            <Button onAction="#openAddSalePage" styleClass="sidebar-button" text="Add Sale" />
-            <Button id="active-page" onAction="#openProductsPage" styleClass="sidebar-button" text="Products" />
-            <Button onAction="#openReportsPage" styleClass="sidebar-button" text="Reports" />
-            <Button onAction="#openSuppliersPage" styleClass="sidebar-button" text="Suppliers" />
-            <Button onAction="#openSettingsPage" styleClass="sidebar-button" text="Settings" />
-            <Button onAction="#logout" text="Logout">
-                <styleClass>
-                    <String fx:value="sidebar-button" />
-                    <String fx:value="logout-button" />
-                </styleClass>
-            </Button>
-        </VBox>
-    </left>
-
-
-    <!-- Main Content Area -->
-    <center>
-         <VBox alignment="TOP_CENTER" maxHeight="1080.0" maxWidth="1980.0" spacing="20" styleClass="main-content">
-             <FlowPane hgap="5.0" vgap="10.0">
-                 <VBox.margin>
-                     <Insets top="15.0" />
-                 </VBox.margin>
-                 <Group>
-                     <Label layoutY="7.0" text="Product id:" />
-                     <TextField fx:id="productIdField" layoutX="77.0" promptText="Enter product name" />
-                 </Group>
-                 <Group>
-                     <Label layoutY="7.0" text="Product Name:" />
-                     <TextField fx:id="productNameField" layoutX="106.0" promptText="Enter product name" />
-                 </Group>
-                 <Group>
-                     <Label layoutY="5.0" text="Product Price:" />
-                     <TextField fx:id="productPriceField" layoutX="98.0" promptText="Enter product price" />
-                 </Group>
-                 <Group>
-                     <Label layoutY="7.0" text="Product quantity:" />
-                     <TextField fx:id="productQuantityField" layoutX="122.0" promptText="Enter product quantity" />
-                 </Group>
-                 <Group>
-                     <Label layoutY="7.0" text="Product expiration Date:" />
-                     <TextField fx:id="productBuyPriceField" layoutX="122.0" promptText="Enter buy Price" />
-                 </Group>
-<!--                 <Group>-->
-<!--                     <Label layoutY="2.0" text="supplier: "/>-->
-<!--                     <ComboBox fx:id="productSupplierField" layoutX="70.0" prefWidth="150.0"/>-->
-<!--                 </Group>-->
-                 <Button onAction="#addProduct" styleClass="add-product-btn" text="Add Product">
-               <FlowPane.margin>
-                  <Insets left="20.0" />
-               </FlowPane.margin></Button>
-             </FlowPane>
-             <!-- Title -->
-             <Label text="Products" />
-             <FlowPane fx:id="productContainer" hgap="10.0" prefHeight="1080.0" prefWidth="1920.0" vgap="10.0">
-             </FlowPane>
-         <padding>
-            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-         </padding>
-         </VBox>
-    </center>
 
     <!-- Footer -->
     <bottom>
@@ -101,4 +37,76 @@
         <URL value="@../styles/productsPageStyles.css" />
         <URL value="@../styles/navBarStyles.css" />
     </stylesheets>
+   <center>
+        <SplitPane dividerPositions="0.1" styleClass="sidebar" BorderPane.alignment="CENTER">
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" minWidth="200.0">
+                <!-- Left Sidebar -->
+                <VBox alignment="TOP_CENTER" prefHeight="512.0" prefWidth="184.0" spacing="10" styleClass="sidebar">
+                    <Label styleClass="sidebar-label" text="Menu" />
+                    <Button onAction="#openDashboardPage" styleClass="sidebar-button" text="Dashboard" />
+                    <Button onAction="#openAddSalePage" styleClass="sidebar-button" text="Add Sale" />
+                    <Button id="active-page" onAction="#openProductsPage" styleClass="sidebar-button" text="Products" />
+                    <Button onAction="#openReportsPage" styleClass="sidebar-button" text="Reports" />
+                    <Button onAction="#openSuppliersPage" styleClass="sidebar-button" text="Suppliers" />
+                    <Button onAction="#openSettingsPage" styleClass="sidebar-button" text="Settings" />
+                    <Button onAction="#logout" text="Logout">
+                        <styleClass>
+                            <String fx:value="sidebar-button" />
+                            <String fx:value="logout-button" />
+                        </styleClass>
+                    </Button>
+                </VBox>
+            </ScrollPane>
+           <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+   
+           <VBox alignment="TOP_CENTER" maxHeight="1080.0" maxWidth="1980.0" prefWidth="1734.0" spacing="20" styleClass="main-content">
+                   <FlowPane hgap="5.0" vgap="10.0">
+                       <VBox.margin>
+                           <Insets top="15.0" />
+                       </VBox.margin>
+                       <Group>
+                           <Label layoutY="7.0" text="Product id: " />
+                           <TextField fx:id="productIdField" layoutX="81.0" prefWidth="145.0" promptText="Enter product name" />
+                       </Group>
+                       <Group>
+                           <Label layoutY="7.0" text="Product Name:" />
+                           <TextField fx:id="productNameField" layoutX="114.0" promptText="Enter product name" />
+                       </Group>
+                       <Group>
+                           <Label layoutY="7.0" text="Product Price:" />
+                           <TextField fx:id="productPriceField" layoutX="105.0" promptText="Enter product price" />
+                       </Group>
+                       <Group>
+                           <Label layoutY="7.0" text="Product quantity:" />
+                           <TextField fx:id="productQuantityField" layoutX="131.0" promptText="Enter product quantity" />
+                       </Group>
+
+                       <Group>
+                           <Label layoutY="7.0" text="Product buy Price:" />
+                           <TextField fx:id="productBuyPriceField" layoutX="142.0" promptText="Enter product buy price" />
+                       </Group>
+                       <Group />
+                       <Group>
+                           <Label layoutY="7.0" text="supplier: " />
+                           <ComboBox fx:id="supplierComboBox" layoutX="70.0" prefHeight="26.0" prefWidth="165.0" />
+                       </Group>
+                   </FlowPane>
+               <StackPane>
+                   <Button alignment="CENTER" onAction="#addProduct" styleClass="add-product-btn" text="Add Product" StackPane.alignment="CENTER_RIGHT">
+                       <StackPane.margin>
+                     <Insets right="100.0" />
+                       </StackPane.margin>
+                   </Button>
+               </StackPane>
+                   <!-- Title -->
+                   <Label style="-fx-font-weight: 700; -fx-font-size: 20;" text="Products:" />
+                   <FlowPane fx:id="productContainer" hgap="10.0" vgap="10.0">
+                </FlowPane>
+                   <padding>
+                       <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                   </padding>
+               </VBox>
+           </ScrollPane>
+        </SplitPane>
+   </center>
 </BorderPane>

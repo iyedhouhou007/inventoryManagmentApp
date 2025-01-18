@@ -1,12 +1,9 @@
 package com.iyed_houhou.inventoryManagementApp.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 
 public class DashboardPageController extends BasePageController {
 
-    @FXML
-    private Label appLabel;
 
     @FXML
     private void openDashboardPage() {

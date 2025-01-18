@@ -16,11 +16,12 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 
 import java.io.IOException;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ProductCard extends VBox {
-    private final Product product;
+    private Product product;
     private ImageView productImageView;
     private static final Logger logger = Logger.getLogger(ProductCard.class.getName());
 
@@ -35,17 +36,11 @@ public class ProductCard extends VBox {
         this.setMinWidth(150);
         this.getStyleClass().add("product-card");
 
-        // Add all UI elements (image, labels, etc.)
-        if (product.getImgURL() != null && !product.getImgURL().isEmpty()) {
-            this.productImageView = new ImageView(new Image(product.getImgURL()));
-            this.productImageView.setFitHeight(150);
-            this.productImageView.setFitWidth(150);
-            this.productImageView.getStyleClass().add("product-image");
-            this.getChildren().add(productImageView);
-        }
+        // Set product image using the setProductImage method
+        setProductImage(product.getImgURL());
 
         // Add ID label
-        Label idLabel = new Label("ID: " + product.getProductId());
+        Label idLabel = new Label("Bar Code:  " + product.getProductBarCode());
 
         // Add product name
         Text productName = new Text(product.getName());
@@ -100,8 +95,8 @@ public class ProductCard extends VBox {
             dialog.setTitle("Product Details");
 
             // Set the dialog's owner to the application's main stage
-            dialog.initOwner(AppConfig.OWNER); // Replace `Main.getPrimaryStage()` with your stage accessor.
-            dialog.initModality(Modality.APPLICATION_MODAL); // Make the dialog modal
+            dialog.initOwner(AppConfig.OWNER);
+            dialog.initModality(Modality.APPLICATION_MODAL);
 
             // Find the Close button and apply the custom CSS class
             Button closeButton = (Button) dialog.getDialogPane().lookupButton(ButtonType.CLOSE);
@@ -113,9 +108,17 @@ public class ProductCard extends VBox {
             if (applyButton != null) {
                 applyButton.getStyleClass().add("save-button");
             }
-            dialog.showAndWait(); // Display the dialog and wait for user interaction
 
-            refreshUI();
+            // Show the dialog and wait for user interaction
+            Optional<Void> result = dialog.showAndWait();
+
+            // Only save the details if the "Apply" button was pressed
+            if (result.toString().contains("Apply")) {
+                System.out.println(true);
+                controller.saveProductDetails();
+                refreshUI();
+            }
+
         } catch (IOException e) {
             // Log the error with a proper message and stack trace
             logger.log(Level.SEVERE, "Failed to load the ProductCardDetailsView.fxml file", e);
@@ -123,25 +126,15 @@ public class ProductCard extends VBox {
     }
 
 
-
     public void refreshUI() {
         // Clear all children to reset the UI
         this.getChildren().clear();
 
-        // Rebuild the UI based on the updated product data
-        if (product.getImgURL() != null && !product.getImgURL().isEmpty()) {
-            if (this.productImageView == null) {
-                this.productImageView = new ImageView();
-                this.productImageView.setFitHeight(150);
-                this.productImageView.setFitWidth(150);
-                this.productImageView.getStyleClass().add("product-image");
-            }
-            this.productImageView.setImage(new Image(product.getImgURL()));
-            this.getChildren().add(productImageView);
-        }
+        // Set product image using the setProductImage method
+        setProductImage(product.getImgURL());
 
         // Add ID label
-        Label idLabel = new Label("ID: " + product.getProductId());
+        Label idLabel = new Label("Bar Code: " + product.getProductBarCode());
 
         // Add product name
         Text productName = new Text(product.getName());
@@ -184,6 +177,9 @@ public class ProductCard extends VBox {
         }
     }
 
+    public void SetProduct(Product product) {
+        this.product = product;
+    }
     public Product getProduct() {
         return product;
     }
