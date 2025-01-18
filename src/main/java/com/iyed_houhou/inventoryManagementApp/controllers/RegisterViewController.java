@@ -3,19 +3,16 @@ package com.iyed_houhou.inventoryManagementApp.controllers;
 import com.iyed_houhou.inventoryManagementApp.models.Role;
 import com.iyed_houhou.inventoryManagementApp.models.User;
 import com.iyed_houhou.inventoryManagementApp.services.UserService;
+
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 
-import java.io.IOException;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegisterViewController {
+public class RegisterViewController extends BasePageController{
     @FXML
     private TextField emailField;
     @FXML
@@ -24,14 +21,13 @@ public class RegisterViewController {
     private TextField usernameField;
     @FXML
     private PasswordField passwordField;
-    @FXML
-    private Pane registerPane;
+
 
     // Use the singleton instance of UserService
     private final UserService userService = UserService.getInstance();
 
     @FXML
-    private void register() throws IOException {
+    private void register() {
         String username = usernameField.getText().trim();
         String email = emailField.getText();
         String password = passwordField.getText();
@@ -67,22 +63,9 @@ public class RegisterViewController {
         }
     }
 
-    private void showAlert(String title, String message, Alert.AlertType type) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-
-        // Apply CSS styles to the alert
-        alert.getDialogPane().getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/iyed_houhou/inventoryManagementApp/styles/alertStyles.css")).toExternalForm());
-
-        alert.showAndWait();
-    }
-
-
     @FXML
-    private void backToLogin() throws IOException {
-        registerPane.getScene().setRoot(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/iyed_houhou/inventoryManagementApp/view/LoginView.fxml"))));
+    private void backToLogin() {
+        loadPage("LoginView.fxml");
     }
 
     // Email validation method

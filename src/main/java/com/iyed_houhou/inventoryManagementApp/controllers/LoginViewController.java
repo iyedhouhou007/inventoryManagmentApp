@@ -5,6 +5,7 @@ import com.iyed_houhou.inventoryManagementApp.models.Role;
 import com.iyed_houhou.inventoryManagementApp.models.User;
 import com.iyed_houhou.inventoryManagementApp.services.UserService;
 import com.iyed_houhou.inventoryManagementApp.utils.SessionManager;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,11 +16,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.util.Objects;
 import java.util.Optional;
 
-public class LoginViewController {
+public class LoginViewController extends BasePageController{
     @FXML
     private TextField usernameField;
     @FXML
@@ -73,40 +72,15 @@ public class LoginViewController {
 
 
     private void openHomePage() {
-        try {
             // Load HomePage FXML
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/iyed_houhou/inventoryManagementApp/view/DashboardView.fxml"));
-            Scene homeScene = new Scene(fxmlLoader.load());
-
-            // Get current stage and set the new scene
-            Stage stage = (Stage) usernameField.getScene().getWindow();
-            stage.setScene(homeScene);
-
-            stage.setFullScreen(true);
-            homeScene.setOnKeyPressed(event -> {
-                if (event.getCode() == KeyCode.F11) {
-                    stage.setFullScreen(!stage.isFullScreen());
-                }
-            });
-            stage.show();
-        } catch (IOException e) {
-            showAlert("Error", "Could not load home page.", Alert.AlertType.ERROR);
-        }
+            loadPage("DashboardView.fxml");
     }
 
     @FXML
     private void openRegister() {
-        try {
             // Load register view
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/iyed_houhou/inventoryManagementApp/view/RegisterView.fxml"));
-            Pane registerPane = fxmlLoader.load();  // Load the FXML content
-
-            // Get the current stage and set the new scene with the register pane
-            Stage stage = getStage(registerPane);
-            stage.show();  // Show the stage
-        } catch (IOException e) {
-            showAlert("Error", "Failed to load the register page.", Alert.AlertType.ERROR);
-        }
+            loadPage("RegisterView.fxml");
     }
 
     private Stage getStage(Pane registerPane) {
@@ -129,16 +103,4 @@ public class LoginViewController {
         showAlert("Forgot Password", "Contact Admin nbr: '0549845542', email: 'houhou.med.iyed@gmai.com'", Alert.AlertType.INFORMATION);
     }
 
-
-    private void showAlert(String title, String message, Alert.AlertType type) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-
-        // Apply CSS styles to the alert
-        alert.getDialogPane().getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/iyed_houhou/inventoryManagementApp/styles/alertStyles.css")).toExternalForm());
-
-        alert.showAndWait();
-    }
 }

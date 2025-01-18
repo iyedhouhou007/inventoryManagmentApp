@@ -1,5 +1,8 @@
 package com.iyed_houhou.inventoryManagementApp.config;
 
+import com.iyed_houhou.inventoryManagementApp.Main;
+import javafx.stage.Stage;
+
 public class AppConfig {
     // The database connection URL and file path
     public static final String DB_FILE_NAME = "inventory_management.db";
@@ -18,4 +21,9 @@ public class AppConfig {
     public static final String LOGGING_LEVEL = "INFO";
 
     public static String STORE_NAME ;
+
+    public static Stage OWNER;
+
+    public static String STYLES_PATH = "/com/iyed_houhou/inventoryManagementApp/styles/";
+    public static String VIEW_PATH = "/com/iyed_houhou/inventoryManagementApp/view/";
 }

@@ -1,5 +1,6 @@
 package com.iyed_houhou.inventoryManagementApp;
 
+import com.iyed_houhou.inventoryManagementApp.config.AppConfig;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -15,13 +16,12 @@ import java.io.IOException;
 
 public class Main extends Application {
     private static final Logger logger = LoggerFactory.getLogger(Main.class); // Logger instance
-    public static Stage stage;
 
     @Override
     public void start(Stage primaryStage) {
 
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/iyed_houhou/inventoryManagementApp/view/ProductsPageView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(AppConfig.VIEW_PATH + "LoginView.fxml"));
             StackPane root = new StackPane();
             root.getChildren().add(fxmlLoader.load());
 
@@ -64,7 +64,7 @@ public class Main extends Application {
             });
 
 
-            stage = primaryStage;
+            AppConfig.OWNER = primaryStage;
             primaryStage.show();
             logger.info("Application started successfully.");
         } catch (IOException e) {

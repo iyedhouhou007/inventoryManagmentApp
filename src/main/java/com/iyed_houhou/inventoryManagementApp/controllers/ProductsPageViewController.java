@@ -60,6 +60,13 @@ public class ProductsPageViewController extends BasePageController {
     @FXML
     private TextField productBuyPriceField;
 
+    @FXML
+    private void initialize() {
+        // Add a default product
+        Product defaultProduct = new Product(1, "Default Product", 10.0, 5, 8, new Supplier("Default Supplier", "default@supplier.com"));
+        ProductCard defaultProductCard = new ProductCard(defaultProduct);
+        productContainer.getChildren().add(defaultProductCard);
+    }
 
     // This will handle the "Add Product" button click
     @FXML
