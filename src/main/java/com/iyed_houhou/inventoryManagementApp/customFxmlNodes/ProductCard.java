@@ -5,9 +5,7 @@ import com.iyed_houhou.inventoryManagementApp.controllers.ProductCardDetailsCont
 import com.iyed_houhou.inventoryManagementApp.models.Product;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.DialogPane;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -46,16 +44,33 @@ public class ProductCard extends VBox {
             this.getChildren().add(productImageView);
         }
 
+        // Add ID label
         Label idLabel = new Label("ID: " + product.getProductId());
+
+        // Add product name
         Text productName = new Text(product.getName());
         productName.setFont(Font.font(18));
+        productName.setFill(Color.BLACK);
+        productName.getStyleClass().add("product-name");
+
+        // Add product price
         Text productPrice = new Text("DA" + product.getSalePrice());
         productPrice.setFont(Font.font(16));
+        productPrice.setFill(Color.GREEN);
+        productPrice.getStyleClass().add("product-price");
+
+        // Add product supplier
         Text productSupplier = new Text(product.getSupplier().getName());
         productSupplier.setFont(Font.font(16));
+        productSupplier.setFill(Color.BLUE);
+        productSupplier.getStyleClass().add("product-supplier");
+
+        // Add product quantity
         Text productQuantity = new Text("Quantity: " + product.getQuantity());
         productQuantity.setFont(Font.font(14));
+        productQuantity.setFill(Color.DARKGRAY);
 
+        // Add all elements back to the VBox
         this.getChildren().addAll(idLabel, productName, productPrice, productSupplier, productQuantity);
 
 
@@ -65,7 +80,6 @@ public class ProductCard extends VBox {
 
     private void handleClick(MouseEvent event) {
         System.out.println("Product clicked: " + product.getName());
-        // Example: Show details in a dialog or open a new scene
         showProductDetails();
     }
 
@@ -73,7 +87,7 @@ public class ProductCard extends VBox {
     private void showProductDetails() {
         try {
             // Load the FXML file containing the DialogPane
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/iyed_houhou/inventoryManagementApp/view/ProductCardDetailsView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(AppConfig.VIEW_PATH + "ProductCardDetailsView.fxml"));
             DialogPane dialogPane = loader.load();
 
             // Optionally, pass the product data to the controller
@@ -89,12 +103,25 @@ public class ProductCard extends VBox {
             dialog.initOwner(AppConfig.OWNER); // Replace `Main.getPrimaryStage()` with your stage accessor.
             dialog.initModality(Modality.APPLICATION_MODAL); // Make the dialog modal
 
+            // Find the Close button and apply the custom CSS class
+            Button closeButton = (Button) dialog.getDialogPane().lookupButton(ButtonType.CLOSE);
+            if (closeButton != null) {
+                closeButton.getStyleClass().add("close-btn");
+            }
+
+            Button applyButton = (Button) dialog.getDialogPane().lookupButton(ButtonType.APPLY);
+            if (applyButton != null) {
+                applyButton.getStyleClass().add("save-button");
+            }
             dialog.showAndWait(); // Display the dialog and wait for user interaction
+
+            refreshUI();
         } catch (IOException e) {
             // Log the error with a proper message and stack trace
             logger.log(Level.SEVERE, "Failed to load the ProductCardDetailsView.fxml file", e);
         }
     }
+
 
 
     public void refreshUI() {

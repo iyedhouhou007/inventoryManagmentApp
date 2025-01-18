@@ -1,0 +1,89 @@
+/* General container for the dialog */
+.dialog-container {
+  -fx-alignment: CENTER;
+  -fx-spacing: 15px;
+  -fx-padding: 20px;
+  -fx-background-color: #f4f4f4; /* Light background */
+}
+
+/* Labels for inputs */
+.label-product-name,
+.label-product-price,
+.label-buy-price,
+.label-avg-buy-price,
+.label-quantity,
+.label-supplier,
+.label-image-url {
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #333; /* Dark text for readability */
+}
+
+/* Input fields for text */
+.input-field {
+  -fx-background-color: #e7e7e7; /* Light gray background */
+  -fx-border-color: #c4c4c4; /* Light gray border */
+  -fx-border-radius: 5px;
+  -fx-background-radius: 5px;
+  -fx-padding: 8px;
+  -fx-font-size: 14px;
+  -fx-text-fill: #333;
+  -fx-prompt-text-fill: #a3a3a3; /* Placeholder color */
+}
+
+.input-field:focused {
+  -fx-border-color: #0078d7; /* Highlight border on focus */
+  -fx-effect: dropshadow(
+    gaussian,
+    #0078d7,
+    5,
+    0.5,
+    0,
+    0
+  ); /* Subtle glow effect */
+}
+/* Close Button */
+.button {
+  -fx-background-color: transparent;
+  -fx-text-fill: #0078d7; /* Blue text color */
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+  -fx-padding: 8px 16px;
+  -fx-border-color: #0078d7; /* Blue border */
+  -fx-border-radius: 5px;
+  -fx-border-width: 2px;
+  -fx-cursor: hand;
+}
+
+.button:hover {
+  -fx-background-color: #ecd3d3; /* Light gray background on hover */
+}
+
+/* Save button styling */
+.save-button {
+  -fx-background-color: #0078d7; /* Blue background for the save button */
+  -fx-text-fill: white; /* White text */
+  -fx-font-size: 16px;
+  -fx-font-weight: bold;
+  -fx-padding: 10px 20px;
+  -fx-background-radius: 5px;
+  -fx-border-radius: 5px;
+  -fx-cursor: hand;
+}
+
+.save-button:hover {
+  -fx-background-color: #005cbf; /* Darker blue on hover */
+}
+
+/* Disable field style */
+.input-field:disabled {
+  -fx-background-color: #f0f0f0; /* Light gray when disabled */
+  -fx-border-color: #d0d0d0; /* Lighter border for disabled fields */
+}
+
+/* Grid styling */
+.grid-container {
+  -fx-padding: 20px;
+  -fx-hgap: 10px;
+  -fx-vgap: 10px;
+}

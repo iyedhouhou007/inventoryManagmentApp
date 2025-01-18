@@ -1,6 +1,7 @@
 package com.iyed_houhou.inventoryManagementApp.controllers;
 
 import com.iyed_houhou.inventoryManagementApp.Main;
+import com.iyed_houhou.inventoryManagementApp.config.AppConfig;
 import com.iyed_houhou.inventoryManagementApp.models.Role;
 import com.iyed_houhou.inventoryManagementApp.models.User;
 import com.iyed_houhou.inventoryManagementApp.services.UserService;
@@ -73,7 +74,6 @@ public class LoginViewController extends BasePageController{
 
     private void openHomePage() {
             // Load HomePage FXML
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/iyed_houhou/inventoryManagementApp/view/DashboardView.fxml"));
             loadPage("DashboardView.fxml");
     }
 

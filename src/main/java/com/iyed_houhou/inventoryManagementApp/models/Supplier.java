@@ -35,6 +35,10 @@ public class Supplier {
         this.productsSupplied.add(product);
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     // Setters and additional methods can be added as necessary
 }
 

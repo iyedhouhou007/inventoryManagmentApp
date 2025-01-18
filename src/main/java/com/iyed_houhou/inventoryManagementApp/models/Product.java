@@ -102,13 +102,11 @@ public class Product {
         if (prevQuantity + newQuantity > 0) {
             avgBuyPrice = ((product.getBuyPrice() * newQuantity) + (buyPrice * prevQuantity)) / (double) (prevQuantity + newQuantity);
         } else {
-            avgBuyPrice = 0; // Fallback case (shouldn't occur if input validation is correct)
+            avgBuyPrice = 0;
         }
 
         setQuantity(prevQuantity + newQuantity);
     }
-
-
 
     public double getBuyPrice() {
         return buyPrice;
@@ -117,5 +115,10 @@ public class Product {
     public void setBuyPrice(double buyPrice) {
         this.buyPrice = buyPrice;
     }
+
+    public double getAvgBuyPrice() {
+        return avgBuyPrice;
+    }
+
 }
 
