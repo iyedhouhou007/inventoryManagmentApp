@@ -21,7 +21,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
 
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(AppConfig.VIEW_PATH + "LoginView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(AppConfig.VIEW_PATH + "ProductsPageView.fxml"));
             StackPane root = new StackPane();
             root.getChildren().add(fxmlLoader.load());
 

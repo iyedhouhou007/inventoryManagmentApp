@@ -1,19 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonType?>
 <?import javafx.scene.control.DialogPane?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 
-<DialogPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.iyed_houhou.inventoryManagementApp.controllers.ProductCardDetailsController">
+<DialogPane prefHeight="400.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iyed_houhou.inventoryManagementApp.controllers.ProductCardDetailsController">
     <content>
-        <VBox spacing="10" alignment="CENTER">
-            <Label fx:id="productNameLabel" text="Product Name" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
-            <Label fx:id="productPriceLabel" text="Price" style="-fx-font-size: 14px;"/>
-            <Label fx:id="productSupplierLabel" text="Supplier" style="-fx-font-size: 14px;"/>
-            <Label fx:id="productQuantityLabel" text="Quantity" style="-fx-font-size: 14px;"/>
-        </VBox>
+        <GridPane hgap="10" vgap="10" style="-fx-padding: 10;">
+            <!-- Product Name -->
+            <Label fx:id="productNameLabel" text="Product Name" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+            <TextField fx:id="productNameField" style="-fx-font-size: 14px;" />
+
+            <!-- Product Price -->
+            <Label fx:id="productPriceLabel" text="Price (DA)" style="-fx-font-size: 14px;" />
+            <TextField fx:id="productPriceField" style="-fx-font-size: 14px;" />
+
+            <!-- Buy Price -->
+            <Label fx:id="buyPriceLabel" text="Buy Price (DA)" style="-fx-font-size: 14px;" />
+            <TextField fx:id="buyPriceField" style="-fx-font-size: 14px;" />
+
+            <!-- Average Buy Price -->
+            <Label fx:id="avgBuyPriceLabel" text="Average Buy Price (DA)" style="-fx-font-size: 14px;" />
+            <TextField fx:id="avgBuyPriceField" style="-fx-font-size: 14px;" />
+
+            <!-- Quantity -->
+            <Label fx:id="productQuantityLabel" text="Quantity" style="-fx-font-size: 14px;" />
+            <TextField fx:id="productQuantityField" style="-fx-font-size: 14px;" />
+
+            <!-- Supplier -->
+            <Label fx:id="productSupplierLabel" text="Supplier" style="-fx-font-size: 14px;" />
+            <TextField fx:id="productSupplierField" style="-fx-font-size: 14px;" />
+
+            <!-- Image URL -->
+            <Label fx:id="productImageLabel" text="Image URL" style="-fx-font-size: 14px;" />
+            <TextField fx:id="productImageField" style="-fx-font-size: 14px;" />
+
+            <!-- Save Button -->
+            <Button fx:id="saveButton" text="Save" style="-fx-font-size: 14px;" />
+        </GridPane>
     </content>
-    <ButtonType text="Close"/>
+    <ButtonType text="Close" />
 </DialogPane>
