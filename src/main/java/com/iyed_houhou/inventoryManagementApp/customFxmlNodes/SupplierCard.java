@@ -2,6 +2,7 @@ package com.iyed_houhou.inventoryManagementApp.customFxmlNodes;
 
 import com.iyed_houhou.inventoryManagementApp.config.AppConfig;
 import com.iyed_houhou.inventoryManagementApp.controllers.SupplierCardDetailsViewController;
+import com.iyed_houhou.inventoryManagementApp.managers.ProductListManager;
 import com.iyed_houhou.inventoryManagementApp.managers.SupplierListManager;
 import com.iyed_houhou.inventoryManagementApp.models.Supplier;
 import com.iyed_houhou.inventoryManagementApp.utils.UIUtils;
@@ -103,6 +104,7 @@ public class SupplierCard extends VBox {
         if (this.getParent() instanceof javafx.scene.layout.Pane parent) {
             supplierListManager.removeSupplier(supplier);
             parent.getChildren().remove(this);
+            ProductListManager.getInstance().refreshProductsList();
         }
     }
 

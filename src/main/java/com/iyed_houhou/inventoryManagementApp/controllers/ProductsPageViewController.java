@@ -44,7 +44,6 @@ public class ProductsPageViewController extends BasePageController {
     @FXML
     private void initialize() {
         // Assuming productListManager is properly initialized, populate the product list from the manager
-        productListManager.refreshProductsList();
         List<Product> initialProductList = productListManager.getProductList();
         for (Product p : initialProductList) {
             addProductToContainer(p);

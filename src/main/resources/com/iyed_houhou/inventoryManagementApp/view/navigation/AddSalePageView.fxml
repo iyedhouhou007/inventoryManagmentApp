@@ -1,52 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import java.lang.String?>
 <?import java.net.URL?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-
-<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iyed_houhou.inventoryManagementApp.controllers.ReportsPageViewController">
+<BorderPane maxHeight="1080.0" maxWidth="1920.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iyed_houhou.inventoryManagementApp.controllers.AddSalePageViewController">
 
     <!-- Header -->
     <top>
         <HBox alignment="CENTER" spacing="10" styleClass="header">
-            <Label fx:id="appLabel" styleClass="header-label" text="Dashboard - Inventory Management App" />
+            <Label styleClass="header-label" text="Dashboard - Inventory Management App" />
         </HBox>
     </top>
-
-    <!-- Left Sidebar -->
-    <left>
-        <VBox alignment="TOP_CENTER" spacing="10" styleClass="sidebar">
-            <Label styleClass="sidebar-label" text="Menu" />
-            <Button onAction="#openDashboardPage" styleClass="sidebar-button" text="Dashboard" />
-            <Button id="active-page" onAction="#openAddSalePage" styleClass="sidebar-button" text="Add Sale" />
-            <Button onAction="#openProductsPage" styleClass="sidebar-button" text="Products" />
-            <Button onAction="#openReportsPage" styleClass="sidebar-button" text="Reports" />
-            <Button onAction="#openSuppliersPage" styleClass="sidebar-button" text="Suppliers" />
-            <Button onAction="#openSettingsPage" styleClass="sidebar-button" text="Settings" />
-            <Button onAction="#logout" text="Logout">
-                <styleClass>
-                    <String fx:value="sidebar-button" />
-                    <String fx:value="logout-button" />
-                </styleClass>
-            </Button>
-        </VBox>
-    </left>
-
-
-    <!-- Main Content Area -->
-    <center>
-        <VBox alignment="CENTER" spacing="20" styleClass="main-content">
-            <Label styleClass="main-label" text="Welcome, User!" />
-            <Label styleClass="main-sub-label" text="Here are your latest updates:" />
-            <Button styleClass="main-button" text="View Product List" />
-            <Button styleClass="main-button" text="Generate Report" />
-            <Button styleClass="main-button" text="Manage Orders" />
-        </VBox>
-    </center>
 
     <!-- Footer -->
     <bottom>
@@ -58,6 +23,34 @@
     <stylesheets>
         <URL value="@../../styles/global.css" />
         <URL value="@../../styles/addSalePageStyles.css" />
-      <URL value="@../../styles/navBarStyles.css" />
+        <URL value="@../../styles/navBarStyles.css" />
     </stylesheets>
+    <center>
+        <SplitPane dividerPositions="0.1" styleClass="sidebar" BorderPane.alignment="CENTER">
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" minWidth="200.0">
+                <!-- Left Sidebar -->
+                <VBox alignment="TOP_CENTER" prefHeight="512.0" prefWidth="184.0" spacing="10" styleClass="sidebar">
+                    <Label styleClass="sidebar-label" text="Menu" />
+                    <Button onAction="#openDashboardPage" styleClass="sidebar-button" text="Dashboard" />
+                    <Button id="active-page" onAction="#openAddSalePage" styleClass="sidebar-button" text="Add Sale" />
+                    <Button onAction="#openProductsPage" styleClass="sidebar-button" text="Products" />
+                    <Button onAction="#openReportsPage" styleClass="sidebar-button" text="Reports" />
+                    <Button onAction="#openSuppliersPage" styleClass="sidebar-button" text="Suppliers" />
+                    <Button onAction="#openSettingsPage" styleClass="sidebar-button" text="Settings" />
+                    <Button onAction="#logout" text="Logout">
+                        <styleClass>
+                            <String fx:value="sidebar-button" />
+                            <String fx:value="logout-button" />
+                        </styleClass>
+                    </Button>
+                </VBox>
+            </ScrollPane>
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+
+                <VBox alignment="TOP_CENTER" maxHeight="1080.0" maxWidth="1980.0" prefWidth="1734.0" spacing="20" styleClass="main-content">
+                    <Label text="Add Sale Page content" style="-fx-font-size: 40px"/>
+                </VBox>
+            </ScrollPane>
+        </SplitPane>
+    </center>
 </BorderPane>
