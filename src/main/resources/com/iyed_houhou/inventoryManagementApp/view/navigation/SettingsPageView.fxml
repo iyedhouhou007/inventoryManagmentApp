@@ -41,8 +41,8 @@
                     <Button onAction="#openAddSalePage" styleClass="sidebar-button" text="Add Sale" />
                     <Button onAction="#openProductsPage" styleClass="sidebar-button" text="Products" />
                     <Button onAction="#openReportsPage" styleClass="sidebar-button" text="Reports" />
-                    <Button id="active-page" onAction="#openSuppliersPage" styleClass="sidebar-button" text="Suppliers" />
-                    <Button onAction="#openSettingsPage" styleClass="sidebar-button" text="Settings" />
+                    <Button onAction="#openSuppliersPage" styleClass="sidebar-button" text="Suppliers" />
+                    <Button id="active-page" onAction="#openSettingsPage" styleClass="sidebar-button" text="Settings" />
                     <Button onAction="#logout" text="Logout">
                         <styleClass>
                             <String fx:value="sidebar-button" />
