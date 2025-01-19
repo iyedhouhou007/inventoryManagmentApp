@@ -3,15 +3,17 @@ package com.iyed_houhou.inventoryManagementApp.controllers;
 import com.iyed_houhou.inventoryManagementApp.Main;
 import com.iyed_houhou.inventoryManagementApp.config.AppConfig;
 import com.iyed_houhou.inventoryManagementApp.utils.SessionManager;
+import com.iyed_houhou.inventoryManagementApp.utils.UIUtils;
 import javafx.fxml.FXML;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.stage.Modality;
+import javafx.scene.layout.Region;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
-import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -51,7 +53,13 @@ public class BasePageController {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(pagePath));
             javafx.scene.Parent newRoot = fxmlLoader.load();
 
-            Stage currentStage = AppConfig.OWNER;
+            BasePageController controller = fxmlLoader.getController();
+            if (controller instanceof ProductsPageViewController) {
+                ((ProductsPageViewController) controller).refreshData();
+            }
+
+            Stage currentStage = AppConfig.MAIN_PRIMARY_STAGE;
+
             if (currentStage == null) {
                 throw new IllegalStateException("Stage is not initialized.");
             }
@@ -62,6 +70,18 @@ public class BasePageController {
                 throw new IllegalStateException("Scene is not initialized.");
             }
 
+            boolean isFullScreen = currentStage.isFullScreen();
+
+            if (!isFullScreen) {
+                System.out.println("not fullscreen");
+                // Center the stage on the screen when exiting full-screen
+                Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+                currentStage.setWidth(setPrefWidthToScreen((Region) currentScene.getRoot()));
+                currentStage.setHeight(setPrefHeightToScreen((Region) currentScene.getRoot()));
+                currentStage.setX((screenBounds.getWidth() - currentStage.getWidth()) / 2);
+                currentStage.setY((screenBounds.getHeight() - currentStage.getHeight()) / 2);
+            }
+
             // Update the root of the current scene instead of creating a new scene
             currentScene.setRoot(newRoot);
 
@@ -69,46 +89,60 @@ public class BasePageController {
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Failed to load the page: " + pageName, e);
 
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Failed to Load");
-            alert.setContentText("Unable to load the requested page. Please contact support.");
-            alert.showAndWait();
+
+            showAlert("Error", "Unable to load the requested page. Please contact support." , Alert.AlertType.ERROR);
         }
     }
 
     protected void showAlert(String title, String message, Alert.AlertType type) {
-        logger.info("Showing alert with title: " + title);
-        try {
-            // Make sure AppConfig.OWNER is not null and is initialized
-            if (AppConfig.OWNER == null) {
-                logger.warning("Main window (AppConfig.OWNER) is not set.");
-                return;  // Avoid showing alert if the main window is not set
-            }
-
-            Alert alert = new Alert(type);
-            alert.setTitle(title);
-            alert.setHeaderText(null);
-            alert.setContentText(message);
-
-            // Apply CSS styles to the alert
-            alert.getDialogPane().getStylesheets().add(Objects.requireNonNull(getClass().getResource(AppConfig.STYLES_PATH + "alertStyles.css")).toExternalForm());
-
-            // Set the owner of the alert
-            alert.initOwner(AppConfig.OWNER);
-
-            // Ensure the main window is brought to the front before the alert
-            AppConfig.OWNER.toFront();
-
-            // Make the alert modal
-            alert.initModality(Modality.APPLICATION_MODAL);
-
-            // Show the alert and wait for user interaction
-            alert.showAndWait();
-            logger.info("Alert displayed successfully.");
-        } catch (Exception e) {
-            logger.log(Level.SEVERE, "Failed to show alert with title: " + title, e);
-        }
+        UIUtils.showAlert(title,message,type);
     }
 
+    private double setPrefHeightToScreen(Region region) {
+        // Get the screen's dimensions
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+
+        // Set the region's preferred height to the screen height
+        region.setPrefHeight(screenBounds.getHeight());
+        return screenBounds.getHeight(); // Return the height for use in other methods
+    }
+
+    private double setPrefWidthToScreen(Region region) {
+        // Get the screen's dimensions
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+
+        // Set the region's preferred width to the screen width
+        region.setPrefWidth(screenBounds.getWidth());
+        return screenBounds.getWidth(); // Return the width for use in other methods
+    }
+
+    @FXML
+    protected void openDashboardPage() {
+        loadPage("DashboardPageView.fxml");
+    }
+
+    @FXML
+    protected void openProductsPage() {
+        loadPage("ProductsPageView.fxml");
+    }
+
+    @FXML
+    protected void openReportsPage() {
+        loadPage("ReportsPageView.fxml");
+    }
+
+    @FXML
+    protected void openSettingsPage() {
+        loadPage("SettingsPageView.fxml");
+    }
+
+    @FXML
+    protected void openAddSalePage() {
+        loadPage("AddSalePageView.fxml");
+    }
+
+    @FXML
+    protected void openSuppliersPage() {
+        loadPage("SuppliersPageView.fxml");
+    }
 }

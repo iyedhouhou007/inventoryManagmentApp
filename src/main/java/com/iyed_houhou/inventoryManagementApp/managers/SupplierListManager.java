@@ -1,6 +1,8 @@
 package com.iyed_houhou.inventoryManagementApp.managers;
 
+import com.iyed_houhou.inventoryManagementApp.models.Product;
 import com.iyed_houhou.inventoryManagementApp.models.Supplier;
+import com.iyed_houhou.inventoryManagementApp.services.ProductService;
 import com.iyed_houhou.inventoryManagementApp.services.SupplierService;
 
 import java.util.List;
@@ -43,6 +45,8 @@ public class SupplierListManager {
     public void removeSupplier(Supplier supplier) {
         // Remove the supplier from the local list
         supplierList.remove(supplier);
+        ProductListManager pSM = ProductListManager.getInstance();
+        pSM.refreshProductsList();
 
         // Remove the supplier from the database using SupplierService
         supplierService.deleteSupplier(supplier.getSupplierId());

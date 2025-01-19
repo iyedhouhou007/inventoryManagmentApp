@@ -1,6 +1,6 @@
 package com.iyed_houhou.inventoryManagementApp.services;
 
-import com.iyed_houhou.inventoryManagementApp.dao.UserDAO;
+import com.iyed_houhou.inventoryManagementApp.repositories.UserDAO;
 import com.iyed_houhou.inventoryManagementApp.models.User;
 
 import java.util.Optional;

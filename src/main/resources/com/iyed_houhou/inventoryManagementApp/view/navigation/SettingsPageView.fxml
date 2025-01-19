@@ -24,9 +24,9 @@
             <Button styleClass="sidebar-button" text="Dashboard" onAction="#openDashboardPage"/>
             <Button styleClass="sidebar-button" text="Add Sale" onAction="#openAddSalePage"/>
             <Button styleClass="sidebar-button" text="Products" onAction="#openProductsPage"/>
-            <Button id="active-page" styleClass="sidebar-button" text="Reports" onAction="#openReportsPage"/>
+            <Button styleClass="sidebar-button" text="Reports" onAction="#openReportsPage"/>
             <Button styleClass="sidebar-button" text="Suppliers" onAction="#openSuppliersPage"/>
-            <Button styleClass="sidebar-button" text="Settings" onAction="#openSettingsPage"/>
+            <Button id="active-page" styleClass="sidebar-button" text="Settings" onAction="#openSettingsPage"/>
             <Button text="Logout" onAction="#logout">
                 <styleClass>
                     <String fx:value="sidebar-button" />
@@ -56,8 +56,8 @@
     </bottom>
 
     <stylesheets>
-        <URL value="@../styles/global.css" />
-        <URL value="@../styles/reportsPageStyles.css" />
-        <URL value="@../styles/navBarStyles.css" />
+        <URL value="@../../styles/global.css" />
+        <URL value="@../../styles/settingsPageStyles.css" />
+        <URL value="@../../styles/navBarStyles.css" />
     </stylesheets>
 </BorderPane>

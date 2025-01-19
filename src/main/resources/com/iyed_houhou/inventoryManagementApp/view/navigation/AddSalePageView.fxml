@@ -21,13 +21,13 @@
     <left>
         <VBox alignment="TOP_CENTER" spacing="10" styleClass="sidebar">
             <Label styleClass="sidebar-label" text="Menu" />
-            <Button styleClass="sidebar-button" text="Dashboard" onAction="#openDashboardPage"/>
-            <Button styleClass="sidebar-button" text="Add Sale" onAction="#openAddSalePage"/>
-            <Button styleClass="sidebar-button" text="Products" onAction="#openProductsPage"/>
-            <Button styleClass="sidebar-button" text="Reports" onAction="#openReportsPage"/>
-            <Button styleClass="sidebar-button" text="Suppliers" onAction="#openSuppliersPage"/>
-            <Button id="active-page" styleClass="sidebar-button" text="Settings" onAction="#openSettingsPage"/>
-            <Button text="Logout" onAction="#logout">
+            <Button onAction="#openDashboardPage" styleClass="sidebar-button" text="Dashboard" />
+            <Button id="active-page" onAction="#openAddSalePage" styleClass="sidebar-button" text="Add Sale" />
+            <Button onAction="#openProductsPage" styleClass="sidebar-button" text="Products" />
+            <Button onAction="#openReportsPage" styleClass="sidebar-button" text="Reports" />
+            <Button onAction="#openSuppliersPage" styleClass="sidebar-button" text="Suppliers" />
+            <Button onAction="#openSettingsPage" styleClass="sidebar-button" text="Settings" />
+            <Button onAction="#logout" text="Logout">
                 <styleClass>
                     <String fx:value="sidebar-button" />
                     <String fx:value="logout-button" />
@@ -56,8 +56,8 @@
     </bottom>
 
     <stylesheets>
-        <URL value="@../styles/global.css" />
-        <URL value="@../styles/settingsPageStyles.css" />
-        <URL value="@../styles/navBarStyles.css" />
+        <URL value="@../../styles/global.css" />
+        <URL value="@../../styles/addSalePageStyles.css" />
+      <URL value="@../../styles/navBarStyles.css" />
     </stylesheets>
 </BorderPane>

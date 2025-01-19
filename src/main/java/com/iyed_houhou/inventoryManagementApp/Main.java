@@ -64,7 +64,7 @@ public class Main extends Application {
             });
 
 
-            AppConfig.OWNER = primaryStage;
+            AppConfig.MAIN_PRIMARY_STAGE = primaryStage;
             primaryStage.show();
             logger.info("Application started successfully.");
         } catch (IOException e) {

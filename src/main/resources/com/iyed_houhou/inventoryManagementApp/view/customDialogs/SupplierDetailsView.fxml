@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<DialogPane prefHeight="331.0" prefWidth="388.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iyed_houhou.inventoryManagementApp.controllers.SupplierCardDetailsViewController">
+    <content>
+
+        <GridPane hgap="10" prefHeight="214.0" prefWidth="388.0" styleClass="grid-container" vgap="10">
+            <!-- Supplier Name -->
+            <Label styleClass="label-supplier-name" text="Supplier Name: " GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="supplierNameField" prefHeight="23.0" prefWidth="190.0" styleClass="input-field" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+            <!-- Supplier Contact -->
+            <Label styleClass="label-supplier-contact" text="Supplier Contact: " GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="supplierContactField" styleClass="input-field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <!-- Other Info -->
+            <Label styleClass="label-supplier-other" text="Other Info: " GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextArea fx:id="supplierOtherField" prefHeight="135.0" prefWidth="169.0" styleClass="input-field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+            <columnConstraints>
+                <ColumnConstraints maxWidth="167.0" minWidth="123.0" percentWidth="50.0" prefWidth="160.0" />
+                <ColumnConstraints maxWidth="183.0" minWidth="174.0" percentWidth="50.0" prefWidth="181.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+        </GridPane>
+    </content>
+
+    <stylesheets>
+        <URL value="@../../styles/SupplierDetailsStyles.css" />
+        <URL value="@../../styles/global.css" />
+    </stylesheets>
+    <ButtonType fx:constant="CLOSE" />
+    <ButtonType fx:constant="APPLY" />
+</DialogPane>

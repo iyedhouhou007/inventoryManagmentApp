@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<DialogPane expanded="true" prefHeight="400.0" prefWidth="403.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iyed_houhou.inventoryManagementApp.controllers.ProductDetailsController">
+    <content>
+        <GridPane hgap="10" styleClass="grid-container" vgap="10">
+            <!-- Product Name -->
+            <Label styleClass="label-product-name" text="Product Name" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="productNameField" styleClass="input-field" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+            <!-- Product Price -->
+            <Label styleClass="label-product-price" text="Price (DA)" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="productPriceField" styleClass="input-field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <!-- Buy Price -->
+            <Label styleClass="label-buy-price" text="Buy Price (DA)" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="buyPriceField" styleClass="input-field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+            <!-- Average Buy Price -->
+            <Label styleClass="label-avg-buy-price" text="Average Buy Price (DA)" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <TextField fx:id="avgBuyPriceField" disable="true" styleClass="input-field" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+            <!-- Quantity -->
+            <Label styleClass="label-quantity" text="Quantity" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <TextField fx:id="productQuantityField" styleClass="input-field" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+            <!-- Supplier -->
+            <Label styleClass="label-supplier" text="Supplier" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+            <ComboBox fx:id="supplierComboBox" layoutX="70.0" prefHeight="46.0" prefWidth="176.0" styleClass="combo-box" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+            <!-- Image URL -->
+            <Label styleClass="label-image-url" text="Image URL" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+            <TextField fx:id="productImageField" styleClass="input-field" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+            <columnConstraints>
+                <ColumnConstraints />
+                <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+        </GridPane>
+    </content>
+
+    <stylesheets>
+        <URL value="@../../styles/global.css" />
+        <URL value="@../../styles/ProductDetailsStyles.css" />
+    </stylesheets>
+    <ButtonType fx:constant="CLOSE" />
+    <ButtonType fx:constant="APPLY" />
+</DialogPane>

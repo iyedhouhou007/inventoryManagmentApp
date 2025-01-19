@@ -1,4 +1,4 @@
-package com.iyed_houhou.inventoryManagementApp.dao;
+package com.iyed_houhou.inventoryManagementApp.repositories;
 
 import com.iyed_houhou.inventoryManagementApp.config.AppConfig;
 import com.iyed_houhou.inventoryManagementApp.models.User;
@@ -7,8 +7,11 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UserDAO {
+    private static final Logger LOGGER = Logger.getLogger(UserDAO.class.getName());
 
     private final Connection connection;
 
@@ -33,7 +36,7 @@ public class UserDAO {
                 return Optional.of(new User(username, passwordHash, email, role));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Error fetching user by username: " + username, e);
         }
         return Optional.empty();
     }
@@ -49,7 +52,7 @@ public class UserDAO {
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Error creating user: " + user.getUsername(), e);
         }
         return false;
     }

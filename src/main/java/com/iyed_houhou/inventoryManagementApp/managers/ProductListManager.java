@@ -9,7 +9,7 @@ public class ProductListManager {
 
     private static ProductListManager instance;
     private final ProductService productService;
-    private final List<Product> productList;
+    private List<Product> productList;
 
     private ProductListManager() {
         productService = new ProductService();
@@ -76,5 +76,10 @@ public class ProductListManager {
             }
         }
         return -1;  // Return -1 if product is not found
+    }
+
+    public void refreshProductsList() {
+        //implement it
+        productList = productService.refreshProductsList();
     }
 }

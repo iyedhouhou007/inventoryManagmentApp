@@ -5,7 +5,9 @@ import com.iyed_houhou.inventoryManagementApp.managers.ProductListManager;
 import com.iyed_houhou.inventoryManagementApp.managers.SupplierListManager;
 import com.iyed_houhou.inventoryManagementApp.models.Product;
 import com.iyed_houhou.inventoryManagementApp.models.Supplier;
+import com.iyed_houhou.inventoryManagementApp.utils.UIUtils;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
@@ -42,6 +44,7 @@ public class ProductsPageViewController extends BasePageController {
     @FXML
     private void initialize() {
         // Assuming productListManager is properly initialized, populate the product list from the manager
+        productListManager.refreshProductsList();
         List<Product> initialProductList = productListManager.getProductList();
         for (Product p : initialProductList) {
             addProductToContainer(p);
@@ -82,8 +85,17 @@ public class ProductsPageViewController extends BasePageController {
     }
 
 
+    public void refreshData(){
+        for (Node n: productContainer.getChildren()){
+            if(n instanceof ProductCard) {
+                ((ProductCard) n).refreshUI();;
+            }
+        }
+    }
+
     private void addProductToContainer(Product product) {
         ProductCard newProductCard = new ProductCard(product);
+        newProductCard.setCursor(Cursor.cursor("hand"));
         productContainer.getChildren().add(newProductCard);
     }
 
@@ -111,7 +123,7 @@ public class ProductsPageViewController extends BasePageController {
                 productListManager.updateProduct(existingProduct); // Update the product in the manager
                 ProductCard existingProductCard = searchForProduct(existingProduct.getProductBarCode());
                 if (existingProductCard != null) {
-                    existingProductCard.SetProduct(existingProduct);
+                    existingProductCard.setProduct(existingProduct);
                     existingProductCard.refreshUI();
                 }
             }
@@ -205,33 +217,5 @@ public class ProductsPageViewController extends BasePageController {
         productBuyPriceField.clear();
     }
 
-    @FXML
-    private void openDashboardPage() {
-        loadPage("DashboardView.fxml");
-    }
 
-    @FXML
-    private void openProductsPage() {
-        loadPage("ProductsPageView.fxml");
-    }
-
-    @FXML
-    private void openReportsPage() {
-        loadPage("ReportsPageView.fxml");
-    }
-
-    @FXML
-    private void openSettingsPage() {
-        loadPage("SettingsPageView.fxml");
-    }
-
-    @FXML
-    private void openAddSalePage() {
-        loadPage("AddSalePageView.fxml");
-    }
-
-    @FXML
-    private void openSuppliersPage() {
-        loadPage("SuppliersPageView.fxml");
-    }
 }

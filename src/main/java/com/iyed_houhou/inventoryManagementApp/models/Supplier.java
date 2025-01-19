@@ -7,6 +7,7 @@ public class Supplier {
     private int supplierId;  // ID for identification in the DB (if needed)
     private String name;
     private String contact;
+    private String description;
     private List<Product> productsSupplied;
 
     public Supplier(String name, String contact) {
@@ -19,6 +20,21 @@ public class Supplier {
         this.supplierId = supplierId;
         this.name = name;
         this.contact = contact;
+        this.productsSupplied = new ArrayList<>();
+    }
+
+    public Supplier(int supplierId, String name, String contact , String description) {
+        this.supplierId = supplierId;
+        this.name = name;
+        this.contact = contact;
+        this.description = description;
+        this.productsSupplied = new ArrayList<>();
+    }
+
+    public Supplier(String name, String contact , String description) {
+        this.name = name;
+        this.contact = contact;
+        this.description = description;
         this.productsSupplied = new ArrayList<>();
     }
 
@@ -43,11 +59,7 @@ public class Supplier {
     }
 
     public void setContact(String contact) {
-        if (contact != null && contact.matches("^[0-9]{10}$")) {  // Example validation
-            this.contact = contact;
-        } else {
-            throw new IllegalArgumentException("Invalid contact number");
-        }
+        this.contact = contact;
     }
 
     public List<Product> getProductsSupplied() {
@@ -64,6 +76,14 @@ public class Supplier {
 
     public boolean hasProduct(Product product) {
         return this.productsSupplied.contains(product);
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getProductCount() {

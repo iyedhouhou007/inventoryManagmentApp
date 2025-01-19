@@ -65,8 +65,10 @@
   -fx-font-weight: bold;
 }
 
+
 .dialog-content {
   -fx-padding: 20px;
+
 }
 
 .dialog-footer {
@@ -84,10 +86,12 @@
 
 .dialog-button:hover {
   -fx-background-color: #2980b9;
+
 }
 
 .dialog-button:disabled {
   -fx-background-color: #bdc3c7; /* Grey background for disabled state */
+
 }
 
 /* Input Field Styles */
@@ -102,6 +106,61 @@
 
 .text-field:focused {
   -fx-border-color: #3498db; /* Blue border on focus */
+
+}
+
+/* ComboBox Styling */
+.combo-box {
+  -fx-background-color: #ecf0f1; /* Light grey background */
+  -fx-border-color: #bdc3c7; /* Light border */
+  -fx-border-radius: 5px;
+  -fx-background-radius: 5px;
+  -fx-padding: 8px;
+  -fx-font-size: 14px;
+  -fx-text-fill: #2c3e50; /* Dark text color */
+}
+
+.combo-box:hover {
+  -fx-border-color: #3498db; /* Light blue border on hover */
+
+}
+
+.combo-box:focused {
+  -fx-border-color: #3498db; /* Blue border on focus */
+  -fx-effect: dropshadow(
+    gaussian,
+    rgba(52, 152, 219, 0.3),
+    5,
+    0,
+    0,
+    0
+  ); /* Subtle shadow on focus */
+}
+
+/* ComboBox Drop-down Styling */
+.combo-box-popup {
+  -fx-background-color: #ffffff; /* White background for the dropdown */
+  -fx-border-color: #bdc3c7; /* Light border */
+  -fx-border-radius: 5px;
+  -fx-background-radius: 5px;
+}
+
+/* ComboBox List Cell Styling */
+.combo-box .list-cell {
+  -fx-cursor: HAND;
+  -fx-padding: 8px;
+  -fx-font-size: 14px;
+  -fx-text-fill: #2c3e50; /* Dark text */
+}
+
+.combo-box .list-cell:hover {
+  -fx-background-color: #ecf0f1; /* Light grey on hover */
+  -fx-text-fill: #3498db; /* Blue text on hover */
+}
+
+.combo-box .list-cell:focused {
+  -fx-background-color: #3498db; /* Blue background when focused */
+  -fx-text-fill: white; /* White text on focus */
 }
 
 /* Label Styles */
@@ -113,4 +172,24 @@
 
 .add-product-btn {
   -fx-background-radius: 20px;
+
+}
+
+.remove-product-btn {
+  -fx-background-color: #e74c3c; /* Red background */
+  -fx-text-fill: white; /* White text */
+  -fx-padding: 10px 20px;
+  -fx-border-radius: 5px;
+  -fx-font-size: 14px;
+  -fx-cursor: hand; /* Pointer cursor on hover */
+}
+
+.remove-product-btn:hover {
+  -fx-background-color: #c0392b; /* Darker red on hover */
+
+}
+
+.remove-product-btn:focused {
+  -fx-border-color: #e74c3c; /* Highlight border */
+
 }

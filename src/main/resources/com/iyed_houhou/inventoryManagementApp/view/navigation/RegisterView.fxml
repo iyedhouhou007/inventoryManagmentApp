@@ -43,7 +43,7 @@
     <Button fx:id="backToLoginButton" onAction="#backToLogin" styleClass="secondary-button" text="Back to Login" />
 
     <stylesheets>
-        <URL value="@../styles/global.css" />
-        <URL value="@../styles/LoginViewStyles.css" />
+        <URL value="@../../styles/global.css" />
+        <URL value="@../../styles/LoginViewStyles.css" />
     </stylesheets>
 </VBox>

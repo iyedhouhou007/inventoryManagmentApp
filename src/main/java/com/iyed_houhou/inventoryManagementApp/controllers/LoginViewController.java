@@ -23,7 +23,7 @@ public class LoginViewController extends BasePageController{
 
     @FXML
     private void login() {
-        String username = usernameField.getText().trim();
+        String username = usernameField.getText().trim().toLowerCase();
         String password = passwordField.getText();
 
         if (username.isEmpty() || password.isEmpty()) {
@@ -67,7 +67,7 @@ public class LoginViewController extends BasePageController{
 
     private void openHomePage() {
             // Load HomePage FXML
-            loadPage("DashboardView.fxml");
+            loadPage("DashboardPageView.fxml");
     }
 
     @FXML

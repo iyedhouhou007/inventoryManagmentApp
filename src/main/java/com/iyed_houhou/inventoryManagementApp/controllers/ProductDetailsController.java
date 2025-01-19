@@ -1,13 +1,22 @@
 package com.iyed_houhou.inventoryManagementApp.controllers;
 
+import com.iyed_houhou.inventoryManagementApp.managers.SupplierListManager;
 import com.iyed_houhou.inventoryManagementApp.models.Product;
+import com.iyed_houhou.inventoryManagementApp.models.Supplier;
 import com.iyed_houhou.inventoryManagementApp.services.ProductService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.util.StringConverter;
 
-public class ProductCardDetailsController {
+import java.util.List;
 
+public class ProductDetailsController {
+
+    private final SupplierListManager supplierListManager = SupplierListManager.getInstance();
+
+    public ComboBox<Supplier> supplierComboBox;
     @FXML
     private TextField productNameField;
     @FXML
@@ -18,12 +27,44 @@ public class ProductCardDetailsController {
     private TextField avgBuyPriceField;
     @FXML
     private TextField productQuantityField;
-    @FXML
-    private TextField productSupplierField;
+
     @FXML
     private TextField productImageField;
 
     private Product product;
+
+    @FXML
+    private void initialize() {
+        List<Supplier> suppliers = supplierListManager.getSupplierList();
+        if (!suppliers.isEmpty()) {
+            // Populate the ComboBox with Supplier objects
+            supplierComboBox.getItems().addAll(suppliers);
+
+            // Set a custom string converter for the ComboBox to show only the Supplier name
+            supplierComboBox.setConverter(new StringConverter<>() {
+                @Override
+                public String toString(Supplier supplier) {
+                    return supplier != null ? supplier.getName() : "";
+                }
+
+                @Override
+                public Supplier fromString(String string) {
+                    // Not needed in this context
+                    return null;
+                }
+            });
+
+            // Handle the selection of a supplier from the ComboBox
+            supplierComboBox.setOnAction(event -> {
+                Supplier selectedSupplier = supplierComboBox.getSelectionModel().getSelectedItem();
+                if (selectedSupplier != null) {
+                    System.out.println("Selected: " + selectedSupplier.getName());
+                }
+            });
+
+
+        }
+    }
 
     // Method to set the product from the ProductCard
     public void setProduct(Product product) {
@@ -35,7 +76,8 @@ public class ProductCardDetailsController {
         buyPriceField.setText(String.valueOf(product.getBuyPrice()));
         avgBuyPriceField.setText(String.valueOf(product.getAvgBuyPrice()));
         productQuantityField.setText(String.valueOf(product.getQuantity()));
-        productSupplierField.setText(product.getSupplier().getName());
+        // Set the first supplier as the default selected item
+        supplierComboBox.getSelectionModel().select(product.getSupplier());
         productImageField.setText(product.getImgURL());
     }
 
@@ -46,7 +88,8 @@ public class ProductCardDetailsController {
         String productPrice = getTextFromField(productPriceField);
         String buyPrice = getTextFromField(buyPriceField);
         String productQuantity = getTextFromField(productQuantityField);
-        String productSupplier = getTextFromField(productSupplierField);
+        //error
+        Supplier productSupplier = supplierComboBox.getSelectionModel().getSelectedItem();
         String productImgURL = getTextFromField(productImageField);
 
         // Check if the product name is empty
@@ -94,11 +137,7 @@ public class ProductCardDetailsController {
             return;
         }
 
-        // Check if the supplier name is empty
-        if (productSupplier.isEmpty()) {
-            showError("Supplier name cannot be empty.");
-            return;
-        }
+
 
 
         // Set the validated values to the product object
@@ -106,7 +145,7 @@ public class ProductCardDetailsController {
         product.setSalePrice(salePrice);
         product.setBuyPrice(buyPriceValue);
         product.setQuantity(quantity);
-        product.getSupplier().setName(productSupplier);  // Assuming Supplier has a setter for name
+        product.setSupplier(productSupplier); // Assuming Supplier has a setter for name
         product.setImgURL(productImgURL);
 
         // Save the product using ProductService

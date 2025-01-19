@@ -29,7 +29,8 @@ public class SupplierDAO {
         String createTableSQL = "CREATE TABLE IF NOT EXISTS suppliers (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " + // Auto-increment ID
                 "name TEXT NOT NULL, " +
-                "contact TEXT NOT NULL" +
+                "contact TEXT NOT NULL, " +
+                "description Text" +
                 ")";
 
         String addDefaultSupplierSQL = "INSERT INTO suppliers (name, contact) " +
@@ -56,11 +57,12 @@ public class SupplierDAO {
 
     // Add a new supplier
     public int addSupplier(Supplier supplier) {
-        String insertSQL = "INSERT INTO suppliers (name, contact) VALUES (?, ?)";
+        String insertSQL = "INSERT INTO suppliers (name, contact, description) VALUES (?, ?, ?)";
 
         try (PreparedStatement pstmt = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS)) {
             pstmt.setString(1, supplier.getName());
             pstmt.setString(2, supplier.getContact());
+            pstmt.setString(3, supplier.getDescription());
 
             pstmt.executeUpdate();
 
@@ -93,12 +95,13 @@ public class SupplierDAO {
 
     // Update a supplier
     public void updateSupplier(Supplier supplier) {
-        String updateSQL = "UPDATE suppliers SET name = ?, contact = ? WHERE id = ?";
+        String updateSQL = "UPDATE suppliers SET name = ?, contact = ?, description = ? WHERE id = ?";
 
         try (PreparedStatement pstmt = connection.prepareStatement(updateSQL)) {
             pstmt.setString(1, supplier.getName());
             pstmt.setString(2, supplier.getContact());
-            pstmt.setInt(3, supplier.getSupplierId());
+            pstmt.setString(3, supplier.getDescription());
+            pstmt.setInt(4, supplier.getSupplierId());
             pstmt.executeUpdate();
             logger.info("Supplier updated: {}", supplier.getName());
         } catch (SQLException e) {
@@ -106,24 +109,41 @@ public class SupplierDAO {
         }
     }
 
-    // Delete a supplier
+    // Delete a supplier and reassign their products to the default supplier (ID = 1)
     public void deleteSupplier(int supplierId) {
+        String updateProductsSQL = "UPDATE products SET supplierId = 1 WHERE supplierId = ?";
         String deleteSQL = "DELETE FROM suppliers WHERE id = ?";
-        try (PreparedStatement pstmt = connection.prepareStatement(deleteSQL)) {
-            pstmt.setInt(1, supplierId);
-            pstmt.executeUpdate();
+
+        // Reassign products to the default supplier (ID = 1)
+        try (PreparedStatement pstmtUpdate = connection.prepareStatement(updateProductsSQL)) {
+            pstmtUpdate.setInt(1, supplierId);
+            int updatedRows = pstmtUpdate.executeUpdate();
+            logger.info("{} products reassigned to default supplier with ID 1.", updatedRows);
+        } catch (SQLException e) {
+            logger.error("Error updating products before deleting supplier", e);
+            // If we encounter an error during product update, we do not continue with the deletion
+            return;
+        }
+
+        // Delete the supplier
+        try (PreparedStatement pstmtDelete = connection.prepareStatement(deleteSQL)) {
+            pstmtDelete.setInt(1, supplierId);
+            pstmtDelete.executeUpdate();
             logger.info("Supplier deleted with ID: {}", supplierId);
         } catch (SQLException e) {
             logger.error("Error deleting supplier", e);
         }
     }
 
+
+
     // Map ResultSet to Supplier object
     private Supplier mapToSupplier(ResultSet rs) throws SQLException {
         return new Supplier(
                 rs.getInt("id"),
                 rs.getString("name"),
-                rs.getString("contact")
+                rs.getString("contact"),
+                rs.getString("description")
         );
     }
 

@@ -52,4 +52,8 @@ public class ProductService {
     public void deleteProduct(int productId) {
         productDAO.deleteProduct(productId);
     }
+
+    public List<Product> refreshProductsList() {
+        return getAllProductsInDB();
+    }
 }

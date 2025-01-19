@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iyed_houhou.inventoryManagementApp.controllers.LoginViewController">
+   <center>
+       <StackPane prefHeight="1080.0" prefWidth="1920.0">
+           <VBox prefHeight="500.0" prefWidth="1420.0" styleClass="root-container">
+               <padding>
+                   <Insets bottom="20" left="40" right="40" top="20" />
+               </padding>
+   
+                  <!-- Login Form -->
+               <VBox alignment="CENTER" maxWidth="370.0" spacing="15" styleClass="login-form">
+                   <TextField fx:id="usernameField" promptText="Username or Email" styleClass="input-field" />
+                   <PasswordField fx:id="passwordField" promptText="Password" styleClass="input-field" />
+                   <Button onAction="#login" styleClass="primary-button" text="Login" />
+                   <Hyperlink onAction="#forgotPassword" styleClass="link" text="Forgot Password?" />
+               </VBox>
+   
+                  <!-- Register Section -->
+               <Label styleClass="secondary-text" text="Don't have an account?" />
+               <Button onAction="#openRegister" styleClass="secondary-button" text="Create Account" />
+   
+                  <stylesheets>
+                   <URL value="@../../styles/global.css" />
+                   <URL value="@../../styles/LoginViewStyles.css" />
+               </stylesheets>
+           </VBox>
+       </StackPane>
+   </center>
+   <top>
+       <!-- Logo/Title Section -->
+       <Label prefWidth="1920.0" styleClass="app-title" text="Inventory Management App" BorderPane.alignment="CENTER" />
+   </top>
+   <stylesheets>
+      <URL value="@../../styles/LoginViewStyles.css" />
+      <URL value="@../../styles/global.css" />
+   </stylesheets>
+</BorderPane>

@@ -28,8 +28,8 @@ public class RegisterViewController extends BasePageController{
 
     @FXML
     private void register() {
-        String username = usernameField.getText().trim();
-        String email = emailField.getText();
+        String username = usernameField.getText().trim().toLowerCase();
+        String email = emailField.getText().toLowerCase();
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
 

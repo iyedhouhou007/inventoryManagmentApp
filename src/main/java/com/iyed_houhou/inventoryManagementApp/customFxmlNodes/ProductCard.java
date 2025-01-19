@@ -1,7 +1,8 @@
 package com.iyed_houhou.inventoryManagementApp.customFxmlNodes;
 
 import com.iyed_houhou.inventoryManagementApp.config.AppConfig;
-import com.iyed_houhou.inventoryManagementApp.controllers.ProductCardDetailsController;
+import com.iyed_houhou.inventoryManagementApp.controllers.ProductDetailsController;
+import com.iyed_houhou.inventoryManagementApp.managers.ProductListManager;
 import com.iyed_houhou.inventoryManagementApp.models.Product;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -23,10 +24,12 @@ import java.util.logging.Logger;
 public class ProductCard extends VBox {
     private Product product;
     private ImageView productImageView;
+    private final ProductListManager productListManager ;
     private static final Logger logger = Logger.getLogger(ProductCard.class.getName());
 
 
     public ProductCard(Product product) {
+        productListManager = ProductListManager.getInstance();
         this.product = product;
 
         // Set the alignment and spacing for the VBox
@@ -40,7 +43,7 @@ public class ProductCard extends VBox {
         setProductImage(product.getImgURL());
 
         // Add ID label
-        Label idLabel = new Label("Bar Code:  " + product.getProductBarCode());
+        Label idLabel = new Label("Bar Code: " + product.getProductBarCode());
 
         // Add product name
         Text productName = new Text(product.getName());
@@ -65,8 +68,15 @@ public class ProductCard extends VBox {
         productQuantity.setFont(Font.font(14));
         productQuantity.setFill(Color.DARKGRAY);
 
+        // Add a remove product button
+        Button removeButton = new Button("Remove Product");
+        removeButton.getStyleClass().add("remove-product-btn"); // Apply custom styling
+        removeButton.setOnAction(event -> handleRemoveProduct());
+
+
+
         // Add all elements back to the VBox
-        this.getChildren().addAll(idLabel, productName, productPrice, productSupplier, productQuantity);
+        this.getChildren().addAll(idLabel, productName, productPrice, productSupplier, productQuantity, removeButton);
 
 
         // Add click event handler
@@ -79,14 +89,47 @@ public class ProductCard extends VBox {
     }
 
 
+    // Method to handle product removal
+    private void handleRemoveProduct() {
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Remove Product");
+        confirmationAlert.setHeaderText("Are you sure you want to remove this product?");
+        confirmationAlert.setContentText("Product: " + product.getName());
+
+        // Set the owner of the alert
+        confirmationAlert.initOwner(AppConfig.MAIN_PRIMARY_STAGE);
+
+        // Ensure the main window is brought to the front before the alert
+        AppConfig.MAIN_PRIMARY_STAGE.toFront();
+
+        // Make the alert modal
+        confirmationAlert.initModality(Modality.APPLICATION_MODAL);
+        Optional<ButtonType> result = confirmationAlert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            System.out.println("Product removed: " + product.getName());
+            // Add logic to remove the product from the database or list
+            removeFromUI();
+        }
+    }
+
+    // Method to remove the product card from the UI
+    private void removeFromUI() {
+        // Assuming this ProductCard is part of a container (e.g., a VBox or GridPane),
+        // get the parent and remove this ProductCard from it.
+        if (this.getParent() instanceof javafx.scene.layout.Pane parent) {
+            productListManager.removeProduct(product);
+            parent.getChildren().remove(this);
+        }
+    }
+
     private void showProductDetails() {
         try {
             // Load the FXML file containing the DialogPane
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(AppConfig.VIEW_PATH + "ProductCardDetailsView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(AppConfig.CUSTOM_DIALOG_PATH + "ProductCardDetailsView.fxml"));
             DialogPane dialogPane = loader.load();
 
             // Optionally, pass the product data to the controller
-            ProductCardDetailsController controller = loader.getController();
+            ProductDetailsController controller = loader.getController();
             controller.setProduct(product);
 
             // Create a Dialog and set the DialogPane
@@ -95,7 +138,7 @@ public class ProductCard extends VBox {
             dialog.setTitle("Product Details");
 
             // Set the dialog's owner to the application's main stage
-            dialog.initOwner(AppConfig.OWNER);
+            dialog.initOwner(AppConfig.MAIN_PRIMARY_STAGE);
             dialog.initModality(Modality.APPLICATION_MODAL);
 
             // Find the Close button and apply the custom CSS class
@@ -124,7 +167,6 @@ public class ProductCard extends VBox {
             logger.log(Level.SEVERE, "Failed to load the ProductCardDetailsView.fxml file", e);
         }
     }
-
 
     public void refreshUI() {
         // Clear all children to reset the UI
@@ -159,25 +201,33 @@ public class ProductCard extends VBox {
         productQuantity.setFont(Font.font(14));
         productQuantity.setFill(Color.DARKGRAY);
 
+        // Add a remove product button
+        Button removeButton = new Button("Remove Product");
+        removeButton.getStyleClass().add("remove-product-btn"); // Apply custom styling
+        removeButton.setOnAction(event -> handleRemoveProduct());
+
         // Add all elements back to the VBox
-        this.getChildren().addAll(idLabel, productName, productPrice, productSupplier, productQuantity);
+        this.getChildren().addAll(idLabel, productName, productPrice, productSupplier, productQuantity, removeButton);
     }
 
     // Method to set a product image URL dynamically
     public void setProductImage(String imageUrl) {
         if (imageUrl != null && !imageUrl.isEmpty()) {
-            if (this.productImageView == null) {
-                this.productImageView = new ImageView();
-                this.productImageView.setFitHeight(150);
-                this.productImageView.setFitWidth(150);
-                this.productImageView.getStyleClass().add("product-image");
-                this.getChildren().add(1, productImageView); // Add the image at the top
+            try {
+                Image image = new Image(imageUrl);
+                if (image.isError()) {
+                    // Handle error in loading the image, maybe use a default image
+                    image = new Image("default_image_url");
+                }
+                this.productImageView.setImage(image);
+            } catch (Exception e) {
+                // Log or handle image loading failure gracefully
+                logger.log(Level.SEVERE, "Error loading product image", e);
             }
-            this.productImageView.setImage(new Image(imageUrl));
         }
     }
 
-    public void SetProduct(Product product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
     public Product getProduct() {
