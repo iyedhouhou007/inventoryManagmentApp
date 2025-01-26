@@ -4,6 +4,10 @@
 <?import javafx.scene.layout.*?>
 <?import java.lang.String?>
 <?import java.net.URL?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <BorderPane maxHeight="1080.0" maxWidth="1920.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iyed_houhou.inventoryManagementApp.controllers.ReportsPageViewController">
 
     <!-- Header -->
@@ -47,9 +51,45 @@
                 </VBox>
             </ScrollPane>
             <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+                <VBox spacing="20" styleClass="report-container">
+                    <!-- Report Controls -->
+                    <HBox spacing="15" styleClass="report-controls">
+                        <ComboBox fx:id="reportTypeCombo" promptText="Select Report Type"/>
+                        <DatePicker fx:id="startDatePicker" promptText="Start Date"/>
+                        <DatePicker fx:id="endDatePicker" promptText="End Date"/>
+                        <Button text="Generate Report" onAction="#generateReport" styleClass="generate-button"/>
+                        <Button text="Export to CSV" onAction="#exportToCSV" styleClass="export-button"/>
+                    </HBox>
 
-                <VBox alignment="TOP_CENTER" maxHeight="1080.0" maxWidth="1980.0" prefWidth="1734.0" spacing="20" styleClass="main-content">
-                    <Label text="Reports Page content" style="-fx-font-size: 40px"/>
+                    <!-- Sales Table -->
+                    <TableView fx:id="salesTable" styleClass="report-table">
+                        <columns>
+                            <TableColumn text="Sale ID">
+                                <cellValueFactory><PropertyValueFactory property="saleId"/></cellValueFactory>
+                            </TableColumn>
+                            <TableColumn text="Date" prefWidth="120">
+                                <cellValueFactory><PropertyValueFactory property="saleDate"/></cellValueFactory>
+                            </TableColumn>
+                            <TableColumn text="Total Amount" prefWidth="120">
+                                <cellValueFactory><PropertyValueFactory property="totalAmount"/></cellValueFactory>
+                            </TableColumn>
+                            <TableColumn text="Items Count" prefWidth="100" fx:id="colItemsCount">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="itemsCount" />
+                                </cellValueFactory>
+                            </TableColumn>
+                        </columns>
+                    </TableView>
+
+                    <!-- Charts -->
+                    <BarChart fx:id="salesChart" title="Sales Report" animated="false">
+                        <xAxis>
+                            <CategoryAxis label="Date"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Amount"/>
+                        </yAxis>
+                    </BarChart>
                 </VBox>
             </ScrollPane>
         </SplitPane>

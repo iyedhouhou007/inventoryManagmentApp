@@ -36,4 +36,8 @@ public class SalesManager {
     public void deleteSale(Sale sale){
         saleService.deleteSale(sale);
     }
+
+    public List<Sale> getAllSalesList() {
+        return salesList;
+    }
 }

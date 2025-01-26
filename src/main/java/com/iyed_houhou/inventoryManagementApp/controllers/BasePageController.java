@@ -4,7 +4,6 @@ import com.iyed_houhou.inventoryManagementApp.Main;
 import com.iyed_houhou.inventoryManagementApp.config.AppConfig;
 import com.iyed_houhou.inventoryManagementApp.utils.SessionManager;
 import com.iyed_houhou.inventoryManagementApp.utils.UIUtils;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -40,7 +39,7 @@ public class BasePageController {
             loadPage("LoginView.fxml");
 
             // Optionally, show an alert confirming the logout
-            showAlert("Info", "You have been logged out.", Alert.AlertType.CONFIRMATION);
+            showAlert("Info", "You have been logged out.", Alert.AlertType.WARNING);
 
             logger.info("User successfully logged out and redirected to LoginView.");
         } catch (Exception e) {
