@@ -31,6 +31,7 @@
                 <!-- Left Sidebar -->
                 <VBox alignment="TOP_CENTER" prefHeight="512.0" prefWidth="184.0" spacing="10" styleClass="sidebar">
                     <Label styleClass="sidebar-label" text="Menu" />
+                    <Button fx:id="adminOnlyPage" onAction="#openAdminPage" styleClass="sidebar-button" text="Admin" />
                     <Button onAction="#openDashboardPage" styleClass="sidebar-button" text="Dashboard" />
                     <Button onAction="#openAddSalePage" styleClass="sidebar-button" text="Add Sale" />
                     <Button onAction="#openProductsPage" styleClass="sidebar-button" text="Products" />

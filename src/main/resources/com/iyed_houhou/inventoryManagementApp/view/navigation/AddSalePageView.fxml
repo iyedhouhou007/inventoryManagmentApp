@@ -26,11 +26,12 @@
         <URL value="@../../styles/navBarStyles.css" />
     </stylesheets>
     <center>
-        <SplitPane dividerPositions="0.1" styleClass="sidebar" BorderPane.alignment="CENTER">
-            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" minWidth="200.0">
+        <SplitPane dividerPositions="0.01" styleClass="sidebar" BorderPane.alignment="CENTER">
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" minWidth="200.0" maxWidth="350.0">
                 <!-- Left Sidebar -->
                 <VBox alignment="TOP_CENTER" prefHeight="512.0" prefWidth="184.0" spacing="10" styleClass="sidebar">
                     <Label styleClass="sidebar-label" text="Menu" />
+                    <Button fx:id="adminOnlyPage" onAction="#openAdminPage" styleClass="sidebar-button" text="Admin" />
                     <Button onAction="#openDashboardPage" styleClass="sidebar-button" text="Dashboard" />
                     <Button id="active-page" onAction="#openAddSalePage" styleClass="sidebar-button" text="Add Sale" />
                     <Button onAction="#openProductsPage" styleClass="sidebar-button" text="Products" />
@@ -48,8 +49,37 @@
             <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
 
                 <VBox alignment="TOP_CENTER" maxHeight="1080.0" maxWidth="1980.0" prefWidth="1734.0" spacing="20" styleClass="main-content">
-                    <Label text="Add Sale Page content" style="-fx-font-size: 40px"/>
+                    <Label text="Add Sale" style="-fx-font-size: 40px" />
+
+                    <!-- Product Scanning Section -->
+                    <HBox alignment="CENTER" spacing="10">
+                        <Label text="Scan Product Barcode:" style="-fx-font-size: 16px" />
+                        <TextField fx:id="addSaleItemField" onKeyTyped="#addSaleItem" promptText="Enter barcode or scan here..." styleClass="input-field" />
+<!--                        <Button text="Add Product" onAction="#addProductToSale" styleClass="action-button" />-->
+                    </HBox>
+
+                    <!-- Product List Section -->
+                    <TableView fx:id="productsTable" styleClass="table-view" >
+                        <columns>
+                            <TableColumn fx:id="productNameColumn" text="Product Name" prefWidth="200" />
+                            <TableColumn fx:id="productQuantityColumn" text="Quantity" prefWidth="100" />
+                            <TableColumn fx:id="productPriceColumn" text="Price" prefWidth="150" />
+                            <TableColumn fx:id="productTotalColumn" text="Total" prefWidth="150" />
+                            <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="100" />
+                        </columns>
+                    </TableView>
+
+                    <!-- Total Price and Checkout Section -->
+                    <HBox alignment="CENTER_RIGHT" spacing="20">
+                        <Label text="Total Price:" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+                        <Label fx:id="totalPriceLabel" text="0.0 DA" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+                    </HBox>
+                    <HBox alignment="CENTER" spacing="20">
+                        <Button text="Clear Sale" onAction="#clearSale" styleClass="action-button" />
+                        <Button text="Complete Sale" onAction="#completeSale" styleClass="action-button" />
+                    </HBox>
                 </VBox>
+
             </ScrollPane>
         </SplitPane>
     </center>

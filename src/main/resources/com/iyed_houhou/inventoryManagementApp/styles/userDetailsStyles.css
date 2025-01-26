@@ -1,0 +1,148 @@
+/* User Details Dialog Container */
+.user-details-container {
+  -fx-alignment: CENTER;
+  -fx-spacing: 15px;
+  -fx-padding: 20px;
+  -fx-background-color: #f4f4f4;
+}
+
+/* User Field Labels */
+.label-username,
+.label-email,
+.label-phone,
+.label-address,
+.label-role {
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #333;
+}
+
+/* User Input Fields */
+.user-input-field {
+  -fx-background-color: #e7e7e7;
+  -fx-border-color: #c4c4c4;
+  -fx-border-radius: 5px;
+  -fx-background-radius: 5px;
+  -fx-padding: 8px;
+  -fx-font-size: 14px;
+  -fx-text-fill: #333;
+  -fx-prompt-text-fill: #a3a3a3;
+}
+
+.user-input-field:focused {
+  -fx-border-color: #0078d7;
+  -fx-effect: dropshadow(gaussian, #0078d7, 5, 0.5, 0, 0);
+}
+
+/* Role Selection ComboBox */
+.user-role-combo {
+  -fx-background-color: #e7e7e7;
+  -fx-border-color: #c4c4c4;
+  -fx-border-radius: 5px;
+  -fx-background-radius: 5px;
+  -fx-font-size: 14px;
+  -fx-padding: 5px;
+}
+
+.user-role-combo:focused {
+  -fx-border-color: #0078d7;
+  -fx-effect: dropshadow(gaussian, #0078d7, 5, 0.5, 0, 0);
+}
+
+/* Role Dropdown Items */
+.user-role-combo .list-cell {
+  -fx-font-size: 14px;
+  -fx-padding: 8px;
+  -fx-text-fill: #333;
+}
+
+.user-role-combo .list-cell:hover {
+  -fx-background-color: #0078d7;
+  -fx-text-fill: white;
+}
+
+/* User Form Grid Layout */
+.user-form-grid {
+  -fx-padding: 20px;
+  -fx-hgap: 12px;
+  -fx-vgap: 12px;
+  -fx-background-color: white;
+  -fx-background-radius: 8px;
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0, 0, 2);
+}
+
+/* User Avatar Section */
+.user-avatar-container {
+  -fx-spacing: 15px;
+  -fx-alignment: CENTER;
+}
+
+.avatar-preview {
+  -fx-background-color: #e7e7e7;
+  -fx-background-radius: 50%;
+  -fx-min-width: 80px;
+  -fx-min-height: 80px;
+  -fx-border-color: #c4c4c4;
+  -fx-border-radius: 50%;
+}
+
+.avatar-upload-btn {
+  -fx-background-color: #0078d7;
+  -fx-text-fill: white;
+  -fx-padding: 8px 16px;
+  -fx-background-radius: 15px;
+}
+
+.avatar-upload-btn:hover {
+  -fx-background-color: #005cbf;
+}
+
+/* Validation Error Styles */
+.user-validation-error {
+  -fx-text-fill: #e74c3c;
+  -fx-font-size: 12px;
+  -fx-padding: 2px 0 0 5px;
+}
+
+/* Read-only User Info */
+.user-readonly-field {
+  -fx-background-color: #f0f0f0;
+  -fx-border-color: #d0d0d0;
+  -fx-text-fill: #666;
+}
+
+/* Role Badge Preview */
+.role-badge-preview {
+  -fx-font-size: 12px;
+  -fx-font-weight: bold;
+  -fx-padding: 3px 8px;
+  -fx-background-radius: 10px;
+  -fx-border-radius: 10px;
+}
+
+.role-admin-badge {
+  -fx-background-color: #8e44ad;
+  -fx-text-fill: white;
+}
+
+.role-manager-badge {
+  -fx-background-color: #3498db;
+  -fx-text-fill: white;
+}
+
+.role-staff-badge {
+  -fx-background-color: #f39c12;
+  -fx-text-fill: white;
+}
+
+/* Target buttons by their button data */
+.save-button {
+    -fx-background-color: #0078d7;
+    -fx-text-fill: white;
+}
+
+.close-btn {
+    -fx-background-color: transparent;
+    -fx-border-color: #0078d7;
+    -fx-text-fill: #0078d7;
+}

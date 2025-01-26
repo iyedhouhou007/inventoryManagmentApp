@@ -2,12 +2,19 @@
 
 <?import java.lang.String?>
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="1080.0" maxWidth="1920.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iyed_houhou.inventoryManagementApp.controllers.SettingsPageViewController">
@@ -28,15 +35,17 @@
 
     <stylesheets>
         <URL value="@../../styles/global.css" />
-        <URL value="@../../styles/productsPageStyles.css" />
+        <URL value="@../../styles/settingsPageStyles.css" />
         <URL value="@../../styles/navBarStyles.css" />
     </stylesheets>
+
     <center>
         <SplitPane dividerPositions="0.1" styleClass="sidebar" BorderPane.alignment="CENTER">
             <ScrollPane fitToWidth="true" hbarPolicy="NEVER" minWidth="200.0">
                 <!-- Left Sidebar -->
                 <VBox alignment="TOP_CENTER" prefHeight="512.0" prefWidth="184.0" spacing="10" styleClass="sidebar">
                     <Label styleClass="sidebar-label" text="Menu" />
+                    <Button fx:id="adminOnlyPage" onAction="#openAdminPage" styleClass="sidebar-button" text="Admin" />
                     <Button onAction="#openDashboardPage" styleClass="sidebar-button" text="Dashboard" />
                     <Button onAction="#openAddSalePage" styleClass="sidebar-button" text="Add Sale" />
                     <Button onAction="#openProductsPage" styleClass="sidebar-button" text="Products" />
@@ -51,10 +60,68 @@
                     </Button>
                 </VBox>
             </ScrollPane>
-            <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
 
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+                <!-- Main Content -->
                 <VBox alignment="TOP_CENTER" maxHeight="1080.0" maxWidth="1980.0" prefWidth="1734.0" spacing="20" styleClass="main-content">
-                    <Label text="Settings Page content" style="-fx-font-size: 40px"/>
+                    <!-- User Settings Form -->
+                    <FlowPane hgap="5.0" vgap="10.0">
+                        <VBox.margin>
+                            <Insets top="15.0" />
+                        </VBox.margin>
+
+                        <!-- Personal Information Section -->
+                        <Group>
+                            <Label layoutY="7.0" text="Username: " />
+                            <TextField fx:id="usernameField" layoutX="79.0" layoutY="5.0" prefWidth="200.0" promptText="Enter new username" />
+                        </Group>
+                        <Group>
+                            <Label layoutX="39.0" layoutY="2.0" text="Email: " />
+                            <TextField fx:id="emailField" layoutX="85.0" prefHeight="23.0" prefWidth="186.0" promptText="Enter new email" />
+                        </Group>
+                        <Group>
+                            <Label layoutX="31.0" layoutY="2.0" text="Phone: " />
+                            <TextField fx:id="phoneField" layoutX="84.0" prefWidth="200.0" promptText="Enter new phone number" />
+                        </Group>
+                        <Group>
+                            <Label layoutY="7.0" text="Address: " />
+                            <TextField fx:id="addressField" layoutX="65.0" layoutY="5.0" prefWidth="200.0" promptText="Enter new address" />
+                        </Group>
+                  <Group>
+                     <children>
+      
+                                    <!-- Password Change Section -->
+                              <Group layoutX="14.0" layoutY="29.0">
+                                  <Label layoutY="7.0" text="Current Password: " />
+                                  <PasswordField fx:id="currentPasswordField" layoutX="132.0" layoutY="5.0" prefWidth="200.0" promptText="Enter current password" />
+                              </Group>
+                              <Group layoutX="358.0" layoutY="29.0">
+                                  <Label layoutY="7.0" text="New Password: " />
+                                  <PasswordField fx:id="newPasswordField" layoutX="111.0" layoutY="5.0" prefWidth="200.0" promptText="Enter new password" />
+                              </Group>
+                              <Group layoutX="678.0" layoutY="29.0">
+                                  <Label layoutY="7.0" text="Confirm Password: " />
+                                  <PasswordField fx:id="confirmPasswordField" layoutX="135.0" layoutY="5.0" prefWidth="200.0" promptText="Confirm new password" />
+                              </Group>
+                     </children>
+                  </Group>
+                    </FlowPane>
+
+                    <!-- Save Button -->
+                    <StackPane>
+                        <Button alignment="CENTER" onAction="#saveSettings" styleClass="save-settings-btn" text="Save Changes" StackPane.alignment="CENTER_RIGHT">
+                            <StackPane.margin>
+                                <Insets right="100.0" />
+                            </StackPane.margin>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Button>
+                    </StackPane>
+
+                    <padding>
+                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                    </padding>
                 </VBox>
             </ScrollPane>
         </SplitPane>

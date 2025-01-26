@@ -44,6 +44,7 @@
                 <!-- Left Sidebar -->
                 <VBox alignment="TOP_CENTER" prefHeight="512.0" prefWidth="184.0" spacing="10" styleClass="sidebar">
                     <Label styleClass="sidebar-label" text="Menu" />
+                    <Button fx:id="adminOnlyPage" onAction="#openAdminPage" styleClass="sidebar-button" text="Admin" />
                     <Button onAction="#openDashboardPage" styleClass="sidebar-button" text="Dashboard" />
                     <Button onAction="#openAddSalePage" styleClass="sidebar-button" text="Add Sale" />
                     <Button id="active-page" onAction="#openProductsPage" styleClass="sidebar-button" text="Products" />
@@ -58,10 +59,10 @@
                     </Button>
                 </VBox>
             </ScrollPane>
-           <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
 
-           <VBox alignment="TOP_CENTER" maxHeight="1080.0" maxWidth="1980.0" prefWidth="1734.0" spacing="20" styleClass="main-content">
-                   <FlowPane hgap="5.0" vgap="10.0">
+            <VBox alignment="TOP_CENTER" maxHeight="1080.0" maxWidth="1980.0" prefWidth="1734.0" spacing="20" styleClass="main-content">
+                <FlowPane hgap="5.0" vgap="10.0">
                        <VBox.margin>
                            <Insets top="15.0" />
                        </VBox.margin>
@@ -95,26 +96,26 @@
                                 </cursor>
                            </ComboBox>
                        </Group>
-                   </FlowPane>
-               <StackPane>
-                   <Button alignment="CENTER" onAction="#addProduct" styleClass="add-product-btn" text="Add Product" StackPane.alignment="CENTER_RIGHT">
-                       <StackPane.margin>
-                            <Insets right="100.0" />
-                       </StackPane.margin>
-                       <cursor>
-                           <Cursor fx:constant="HAND" />
-                       </cursor>
-                   </Button>
-               </StackPane>
-                   <!-- Title -->
-                   <Label style="-fx-font-weight: 700; -fx-font-size: 20;" text="Products:" />
-                   <FlowPane fx:id="productContainer" hgap="10.0" vgap="10.0">
                 </FlowPane>
-                   <padding>
-                       <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-                   </padding>
-               </VBox>
-           </ScrollPane>
+                <StackPane>
+                    <Button alignment="CENTER" onAction="#addProduct" styleClass="add-product-btn" text="Add Product" StackPane.alignment="CENTER_RIGHT">
+                        <StackPane.margin>
+                            <Insets right="100.0" />
+                        </StackPane.margin>
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </Button>
+                </StackPane>
+                <!-- Title -->
+                <Label style="-fx-font-weight: 700; -fx-font-size: 20;" text="Products:" />
+                <FlowPane fx:id="productContainer" hgap="10.0" vgap="10.0">
+                </FlowPane>
+                <padding>
+                    <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                </padding>
+            </VBox>
+        </ScrollPane>
         </SplitPane>
    </center>
 </BorderPane>

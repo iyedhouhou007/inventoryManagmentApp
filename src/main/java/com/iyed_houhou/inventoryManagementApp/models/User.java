@@ -47,7 +47,13 @@ public class User {
         this.role = role;
     }
 
-
+    public User(int userId, String username, String passwordHash, String email, Role role) {
+        this.userId = userId;
+        this.username = username;
+        this.password = passwordHash;
+        this.email = email;
+        this.role = role;
+    }
 
 
     public void setUsername(String username) {

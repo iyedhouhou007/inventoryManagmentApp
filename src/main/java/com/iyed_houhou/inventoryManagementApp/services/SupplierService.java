@@ -1,7 +1,7 @@
 package com.iyed_houhou.inventoryManagementApp.services;
 
 import com.iyed_houhou.inventoryManagementApp.models.Supplier;
-import com.iyed_houhou.inventoryManagementApp.repositories.SupplierDAO;
+import com.iyed_houhou.inventoryManagementApp.DAOs.SupplierDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +14,7 @@ public class SupplierService {
 
     // Constructor to initialize the SupplierDAO
     public SupplierService() {
-        this.supplierDAO = new SupplierDAO();
+        this.supplierDAO = SupplierDAO.getInstance();
     }
 
     // Add a new supplier

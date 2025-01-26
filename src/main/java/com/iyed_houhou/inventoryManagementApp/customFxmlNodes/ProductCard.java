@@ -1,7 +1,7 @@
 package com.iyed_houhou.inventoryManagementApp.customFxmlNodes;
 
 import com.iyed_houhou.inventoryManagementApp.config.AppConfig;
-import com.iyed_houhou.inventoryManagementApp.controllers.ProductDetailsController;
+import com.iyed_houhou.inventoryManagementApp.customFxmlNodes.controllers.ProductDetailsController;
 import com.iyed_houhou.inventoryManagementApp.managers.ProductListManager;
 import com.iyed_houhou.inventoryManagementApp.models.Product;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 
 public class ProductCard extends VBox {
     private Product product;
-    private ImageView productImageView;
+    private final ImageView productImageView;
     private final ProductListManager productListManager ;
     private static final Logger logger = Logger.getLogger(ProductCard.class.getName());
 
@@ -40,6 +40,7 @@ public class ProductCard extends VBox {
         this.getStyleClass().add("product-card");
 
         // Set product image using the setProductImage method
+        this.productImageView = null;
         setProductImage(product.getImgURL());
 
         // Add ID label
@@ -71,7 +72,7 @@ public class ProductCard extends VBox {
         // Add a remove product button
         Button removeButton = new Button("Remove Product");
         removeButton.getStyleClass().add("remove-product-btn"); // Apply custom styling
-        removeButton.setOnAction(event -> handleRemoveProduct());
+        removeButton.setOnAction(_ -> handleRemoveProduct());
 
 
 
@@ -157,7 +158,6 @@ public class ProductCard extends VBox {
 
             // Only save the details if the "Apply" button was pressed
             if (result.toString().contains("Apply")) {
-                System.out.println(true);
                 controller.saveProductDetails();
                 refreshUI();
             }
@@ -204,7 +204,7 @@ public class ProductCard extends VBox {
         // Add a remove product button
         Button removeButton = new Button("Remove Product");
         removeButton.getStyleClass().add("remove-product-btn"); // Apply custom styling
-        removeButton.setOnAction(event -> handleRemoveProduct());
+        removeButton.setOnAction(_ -> handleRemoveProduct());
 
         // Add all elements back to the VBox
         this.getChildren().addAll(idLabel, productName, productPrice, productSupplier, productQuantity, removeButton);

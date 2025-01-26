@@ -1,6 +1,6 @@
 package com.iyed_houhou.inventoryManagementApp.services;
 
-import com.iyed_houhou.inventoryManagementApp.repositories.ProductDAO;
+import com.iyed_houhou.inventoryManagementApp.DAOs.ProductDAO;
 import com.iyed_houhou.inventoryManagementApp.models.Product;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +13,7 @@ public class ProductService {
     private final ProductDAO productDAO; // Dependency to manage database operations
 
     public ProductService() {
-        this.productDAO = new ProductDAO();
+        this.productDAO = ProductDAO.getInstance();
     }
 
     public List<Product> getAllProductsInDB(){
@@ -22,7 +22,7 @@ public class ProductService {
     // Add a new product
     public void addProduct(Product product) {
         // Business logic before adding the product (e.g., validation)
-        if (product.getQuantity() <= 0) {
+        if (product.getQuantity() < 0) {
             throw new IllegalArgumentException("Product quantity must be greater than 0.");
         }
 

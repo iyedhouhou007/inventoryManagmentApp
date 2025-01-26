@@ -3,13 +3,13 @@ package com.iyed_houhou.inventoryManagementApp.controllers;
 
 import com.iyed_houhou.inventoryManagementApp.customFxmlNodes.SupplierCard;
 import com.iyed_houhou.inventoryManagementApp.managers.SupplierListManager;
+import com.iyed_houhou.inventoryManagementApp.models.Role;
 import com.iyed_houhou.inventoryManagementApp.models.Supplier;
+import com.iyed_houhou.inventoryManagementApp.models.User;
+import com.iyed_houhou.inventoryManagementApp.utils.SessionManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 
 import java.util.List;
@@ -29,6 +29,17 @@ public class SuppliersPageViewController extends BasePageController{
 
     // List to hold supplier names (In real case, this would come from a database)
     private final List<Supplier> suppliersList = supplierListManager.getSupplierList();
+
+    // This method is called when the view is loaded
+    @FXML
+    public void initialize() {
+        User loggedInUser = SessionManager.getInstance().getLoggedInUser();
+        if (loggedInUser == null || (!loggedInUser.getRole().equals(Role.Admin) && !loggedInUser.getRole().equals(Role.SuperAdmin)) ) {
+            adminOnlyPage.setVisible(false);
+        }
+        // Populate the suppliers list
+        populateSuppliersList();
+    }
 
     // This method will populate the suppliers list dynamically
     private void populateSuppliersList() {
@@ -69,10 +80,5 @@ public class SuppliersPageViewController extends BasePageController{
     }
 
 
-    // This method is called when the view is loaded
-    @FXML
-    public void initialize() {
-        // Populate the suppliers list
-        populateSuppliersList();
-    }
+
 }

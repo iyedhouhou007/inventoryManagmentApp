@@ -43,7 +43,7 @@ public class UIUtils {
             alert.showAndWait();
             logger.info("Alert displayed successfully.");
         } catch (Exception e) {
-            logger.error("Failed to show alert with title: " + title, e);
+            logger.error("Failed to show alert with title: {} {}", e, title);
         }
     }
 }

@@ -1,11 +1,10 @@
 package com.iyed_houhou.inventoryManagementApp.customFxmlNodes;
 
 import com.iyed_houhou.inventoryManagementApp.config.AppConfig;
-import com.iyed_houhou.inventoryManagementApp.controllers.SupplierCardDetailsViewController;
+import com.iyed_houhou.inventoryManagementApp.customFxmlNodes.controllers.SupplierCardDetailsViewController;
 import com.iyed_houhou.inventoryManagementApp.managers.ProductListManager;
 import com.iyed_houhou.inventoryManagementApp.managers.SupplierListManager;
 import com.iyed_houhou.inventoryManagementApp.models.Supplier;
-import com.iyed_houhou.inventoryManagementApp.utils.UIUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -60,7 +59,7 @@ public class SupplierCard extends VBox {
         // Add a remove supplier button
         Button removeButton = new Button("Remove Supplier");
         removeButton.getStyleClass().add("remove-supplier-btn");
-        removeButton.setOnAction(event -> handleRemoveSupplier());
+        removeButton.setOnAction(_ -> handleRemoveSupplier());
 
         // Add all elements back to the VBox
         this.getChildren().addAll(supplierName, supplierContact, supplierDescription, removeButton);
@@ -182,7 +181,7 @@ public class SupplierCard extends VBox {
         // Add a remove supplier button
         Button removeButton = new Button("Remove Supplier");
         removeButton.getStyleClass().add("remove-supplier-btn");
-        removeButton.setOnAction(event -> handleRemoveSupplier());
+        removeButton.setOnAction(_ -> handleRemoveSupplier());
 
         // Add all elements back to the VBox
         this.getChildren().addAll(supplierName, supplierContact, supplierDescription, removeButton);

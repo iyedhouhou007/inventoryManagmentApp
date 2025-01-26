@@ -11,15 +11,6 @@ public class Product {
     private Supplier supplier;
     private String imgURL;
 
-    // Constructor with ID and barcode as String
-    public Product(String productBarCode, String name, double salePrice, int quantity, Supplier supplier) {
-        this.productBarCode = productBarCode;
-        this.name = name;
-        this.salePrice = salePrice;
-        this.quantity = quantity;
-        this.supplier = supplier;
-        this.avgBuyPrice = buyPrice;
-    }
 
     // Constructor with ID and barcode, and buyPrice
     public Product(String productBarCode, String name, double salePrice, int quantity, double buyPrice, Supplier supplier) {

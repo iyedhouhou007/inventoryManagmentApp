@@ -4,8 +4,10 @@ import com.iyed_houhou.inventoryManagementApp.customFxmlNodes.ProductCard;
 import com.iyed_houhou.inventoryManagementApp.managers.ProductListManager;
 import com.iyed_houhou.inventoryManagementApp.managers.SupplierListManager;
 import com.iyed_houhou.inventoryManagementApp.models.Product;
+import com.iyed_houhou.inventoryManagementApp.models.Role;
 import com.iyed_houhou.inventoryManagementApp.models.Supplier;
-import com.iyed_houhou.inventoryManagementApp.utils.UIUtils;
+import com.iyed_houhou.inventoryManagementApp.models.User;
+import com.iyed_houhou.inventoryManagementApp.utils.SessionManager;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
@@ -43,6 +45,10 @@ public class ProductsPageViewController extends BasePageController {
 
     @FXML
     private void initialize() {
+        User loggedInUser = SessionManager.getInstance().getLoggedInUser();
+        if (loggedInUser == null || (!loggedInUser.getRole().equals(Role.Admin) && !loggedInUser.getRole().equals(Role.SuperAdmin)) ) {
+            adminOnlyPage.setVisible(false);
+        }
         // Assuming productListManager is properly initialized, populate the product list from the manager
         List<Product> initialProductList = productListManager.getProductList();
         for (Product p : initialProductList) {
@@ -75,7 +81,7 @@ public class ProductsPageViewController extends BasePageController {
         }
 
         // Handle the selection of a supplier from the ComboBox
-        supplierComboBox.setOnAction(event -> {
+        supplierComboBox.setOnAction(_ -> {
             Supplier selectedSupplier = supplierComboBox.getSelectionModel().getSelectedItem();
             if (selectedSupplier != null) {
                 System.out.println("Selected: " + selectedSupplier.getName());
@@ -87,7 +93,7 @@ public class ProductsPageViewController extends BasePageController {
     public void refreshData(){
         for (Node n: productContainer.getChildren()){
             if(n instanceof ProductCard) {
-                ((ProductCard) n).refreshUI();;
+                ((ProductCard) n).refreshUI();
             }
         }
     }
@@ -109,7 +115,7 @@ public class ProductsPageViewController extends BasePageController {
             if(newProduct == null) {
                 return;
             }
-            Product existingProduct = productListManager.searchProductByBarcode(newProduct.getProductBarCode());
+            Product existingProduct = productListManager.getProductByBarcode(newProduct.getProductBarCode());
 
 
             if (existingProduct == null) {

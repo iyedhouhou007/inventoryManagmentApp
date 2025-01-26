@@ -32,6 +32,7 @@
             <!-- Left Sidebar -->
             <VBox alignment="TOP_CENTER" prefHeight="512.0" prefWidth="184.0" spacing="10" styleClass="sidebar">
                <Label styleClass="sidebar-label" text="Menu" />
+               <Button fx:id="adminOnlyPage" onAction="#openAdminPage" styleClass="sidebar-button" text="Admin" />
                <Button id="active-page" onAction="#openDashboardPage" styleClass="sidebar-button" text="Dashboard" />
                <Button onAction="#openAddSalePage" styleClass="sidebar-button" text="Add Sale" />
                <Button onAction="#openProductsPage" styleClass="sidebar-button" text="Products" />
@@ -50,6 +51,7 @@
 
             <VBox alignment="TOP_CENTER" maxHeight="1080.0" maxWidth="1980.0" prefWidth="1734.0" spacing="20" styleClass="main-content">
                <Label text="Dashboard Page content" style="-fx-font-size: 40px"/>
+               <FlowPane fx:id="usersContainer" hgap="10.0" prefHeight="0.0" prefWidth="1700.0" vgap="10.0" />
             </VBox>
          </ScrollPane>
       </SplitPane>

@@ -4,10 +4,12 @@ import com.iyed_houhou.inventoryManagementApp.Main;
 import com.iyed_houhou.inventoryManagementApp.config.AppConfig;
 import com.iyed_houhou.inventoryManagementApp.utils.SessionManager;
 import com.iyed_houhou.inventoryManagementApp.utils.UIUtils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Region;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -21,6 +23,9 @@ public class BasePageController {
 
     // Logger instance
     private static final Logger logger = Logger.getLogger(BasePageController.class.getName());
+
+    @FXML
+    protected Button adminOnlyPage;
 
     // Common method for logging out (protected access)
     @FXML
@@ -144,5 +149,9 @@ public class BasePageController {
     @FXML
     protected void openSuppliersPage() {
         loadPage("SuppliersPageView.fxml");
+    }
+
+    public void openAdminPage() {
+        loadPage("AdminPageView.fxml");
     }
 }

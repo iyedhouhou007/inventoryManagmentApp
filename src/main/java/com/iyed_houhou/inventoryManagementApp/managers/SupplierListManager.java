@@ -1,8 +1,6 @@
 package com.iyed_houhou.inventoryManagementApp.managers;
 
-import com.iyed_houhou.inventoryManagementApp.models.Product;
 import com.iyed_houhou.inventoryManagementApp.models.Supplier;
-import com.iyed_houhou.inventoryManagementApp.services.ProductService;
 import com.iyed_houhou.inventoryManagementApp.services.SupplierService;
 
 import java.util.List;

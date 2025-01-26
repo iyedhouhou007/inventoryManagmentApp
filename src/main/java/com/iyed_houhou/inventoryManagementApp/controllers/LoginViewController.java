@@ -1,5 +1,6 @@
 package com.iyed_houhou.inventoryManagementApp.controllers;
 
+import com.iyed_houhou.inventoryManagementApp.managers.UserListManager;
 import com.iyed_houhou.inventoryManagementApp.models.Role;
 import com.iyed_houhou.inventoryManagementApp.models.User;
 import com.iyed_houhou.inventoryManagementApp.services.UserService;
@@ -43,7 +44,8 @@ public class LoginViewController extends BasePageController{
                 }else {
                     // Save the user in the SessionManager
                     SessionManager.getInstance().setLoggedInUser(user);
-
+                    UserListManager userListManager = UserListManager.getInstance();
+                    userListManager.refreshUsersList();
                     showAlert("Login Successful", "Welcome, " + username + "!", Alert.AlertType.INFORMATION);
 
                     usernameField.clear();

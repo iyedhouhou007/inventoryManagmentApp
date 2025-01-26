@@ -1,5 +1,6 @@
 package com.iyed_houhou.inventoryManagementApp.utils;
 
+import com.iyed_houhou.inventoryManagementApp.models.Role;
 import com.iyed_houhou.inventoryManagementApp.models.User;
 
 public class SessionManager {
@@ -9,6 +10,7 @@ public class SessionManager {
 
     private SessionManager() {
         // Private constructor to prevent instantiation
+//        this.loggedInUser = new User("iyed","","", Role.SuperAdmin);
     }
 
     // Singleton instance
@@ -32,5 +34,9 @@ public class SessionManager {
     // Clear session
     public void clearSession() {
         this.loggedInUser = null;
+    }
+
+    public void updateUser(User currentUser) {
+        this.loggedInUser = currentUser;
     }
 }

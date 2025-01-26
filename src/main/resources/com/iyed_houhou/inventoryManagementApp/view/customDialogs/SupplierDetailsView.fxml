@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<DialogPane prefHeight="331.0" prefWidth="388.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iyed_houhou.inventoryManagementApp.controllers.SupplierCardDetailsViewController">
+<DialogPane prefHeight="331.0" prefWidth="388.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.iyed_houhou.inventoryManagementApp.customFxmlNodes.controllers.SupplierCardDetailsViewController">
     <content>
 
         <GridPane hgap="10" prefHeight="214.0" prefWidth="388.0" styleClass="grid-container" vgap="10">

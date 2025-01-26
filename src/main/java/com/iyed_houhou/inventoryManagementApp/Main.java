@@ -21,6 +21,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
 
         try {
+            AppConfig.createDatabaseIfNotExists();
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(AppConfig.VIEW_PATH + "LoginView.fxml"));
             StackPane root = new StackPane();
             root.getChildren().add(fxmlLoader.load());
@@ -68,6 +69,7 @@ public class Main extends Application {
             primaryStage.show();
             logger.info("Application started successfully.");
         } catch (IOException e) {
+            e.printStackTrace();
             logger.error("Failed to load ProductsPageView.fxml", e);
 
             // Show an error alert

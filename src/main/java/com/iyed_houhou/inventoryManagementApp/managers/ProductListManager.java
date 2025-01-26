@@ -49,7 +49,7 @@ public class ProductListManager {
     // Updates a product in the list and in the database
     public void updateProduct(Product product) {
         // Update the product in the local list
-        int index = findProductIndex(product.getProductId());
+        int index = getProductIndex(product.getProductId());
         if (index != -1) {
             productList.set(index, product);
         }
@@ -59,7 +59,7 @@ public class ProductListManager {
     }
 
     // Searches for a product by barcode in the local list
-    public Product searchProductByBarcode(String barcode) {
+    public Product getProductByBarcode(String barcode) {
         for (Product p : productList) {
             if (p.getProductBarCode().equals(barcode)) {
                 return p;  // Return the product if found
@@ -68,8 +68,12 @@ public class ProductListManager {
         return null;  // Return null if product not found
     }
 
+    public Product getProductById(int productId){
+        return productService.getProductById(productId);
+    }
+
     // Helper method to find the index of a product by its ID
-    private int findProductIndex(int productId) {
+    private int getProductIndex(int productId) {
         for (int i = 0; i < productList.size(); i++) {
             if (productList.get(i).getProductId() == (productId)) {
                 return i;
@@ -82,4 +86,5 @@ public class ProductListManager {
         //implement it
         productList = productService.refreshProductsList();
     }
+
 }
