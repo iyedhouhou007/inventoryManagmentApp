@@ -62,12 +62,14 @@ pom.xml
 ### Build & Run
 
 1. **Clone the repository:**
+
    ```sh
-   git clone <your-repo-url>
+   git clone https://github.com/iyedhouhou007/inventoryManagmentApp
    cd inventoryManagmentApp
    ```
 
 2. **Build the project:**
+
    ```sh
    ./mvnw clean package
    ```
